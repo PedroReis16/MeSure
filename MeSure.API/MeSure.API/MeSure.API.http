@@ -1,0 +1,6 @@
+@MeSure.API_HostAddress = http://localhost:5209
+
+GET {{MeSure.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
