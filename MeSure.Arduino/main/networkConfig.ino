@@ -51,17 +51,17 @@ PubSubClient MQTT(espClient);
 char EstadoSaida = '0';
 
 
-void initConnection(char defaultSSID,char password,char broker,char brokerPort,char topicoSubscribe,char topicoPublish1,char topicoPublish2,char idMQQT,int defaultD4,char sensorPrefix){
-  SSID = defaultSSID;
-  PASSWORD = password;
-  BROKER_MQTT = broker;
+void initConnection(char* defaultSSID,char* password,char* broker,int brokerPort,char* topicoSubscribe,char* topicoPublish1,char* topicoPublish2,char* idMQQT,int defaultD4,char* sensorPrefix){
+  SSID = const_cast<char*>(defaultSSID);
+  PASSWORD = const_cast<char*>(password);
+  BROKER_MQTT = const_cast<char*>(broker);
   BROKER_PORT = brokerPort;
-  TOPICO_SUBSCRIBE = topicoSubscribe;
-  TOPICO_PUBLISH_1 = topicoPublish1;
-  TOPICO_PUBLISH_2 = topicoPublish2;
-  ID_MQTT = idMQQT;
+  TOPICO_SUBSCRIBE = const_cast<char*>(topicoSubscribe);
+  TOPICO_PUBLISH_1 = const_cast<char*>(topicoPublish1);
+  TOPICO_PUBLISH_2 = const_cast<char*>(topicoPublish2);
+  ID_MQTT = const_cast<char*>(idMQQT);
   D4 = defaultD4;
-  topicPrefix = sensorPrefix;
+  topicPrefix = const_cast<char*>(sensorPrefix);
 
   InitOutput();
   initSerial();
