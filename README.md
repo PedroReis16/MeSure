@@ -1,14 +1,9 @@
 # ProjectBasedLearning
 Project Based Learning, para o íntimos, PBL
 
-#Repositório atualmente
-MeSure.API 
-- Projeto em ASP net em .NET Framework 8.0 (versão mais recente), apenas API sem a opção de UI já configurado com o protocolo para estabelecer conexões HTTPS
-- Projeto biblioteca para armazenar as models
-- Projeto biblioteca destinado para o gerenciamento do banco de dados, talvez, utilizar o Entity Framework para fazer essa gestão
+# Repositório atualmente
+MeSure.ASP 
+- Projeto ASP.NET(model-view-controller), configurado na versão .NET 8.0, além de já estar configurado com o HTTPS e docker file, caso necessário
 
-MeSure.Arduino
-- Pasta com um arquivo simples de Arduino, apenas com o arquivo inicial do .ino
-
-MeSure.UI
-- Pasta apenas com o mínimo dos arquivos que serão utilizados para fazer o front
+# MeSure.Arduino
+- Pasta com o arquivo main do arduino, além disso, esta adicionado um arquivo seperado chamado networkConfig, utilizado para conectar o Esp 32 com os serviços fiware
