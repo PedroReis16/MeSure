@@ -1,8 +1,6 @@
-
-
 //Configuração de conexão do Esp32
-char* default_SSID = "Telenew Jose"; // Nome da rede Wi-Fi
-char* default_PASSWORD = "Jepema!41609"; // Senha da rede Wi-Fi
+char* default_SSID = "nome da rede"; // Nome da rede Wi-Fi
+char* default_PASSWORD = "senha"; // Senha da rede Wi-Fi
 char* default_BROKER_MQTT = "19.92.235.126"; // IP do Broker MQTT
 int default_BROKER_PORT = 1883; // Porta do Broker MQTT
 char* default_TOPICO_SUBSCRIBE = "/TEF/sensor001/cmd"; // Tópico MQTT de escuta
