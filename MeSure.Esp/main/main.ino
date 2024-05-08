@@ -14,13 +14,6 @@
 #define DHTTYPE DHT11  // DHT 22  (AM2302), AM2321
 //#define DHTTYPE DHT21   // DHT 21 (AM2301)
 
-// //Endereços de memória paras as variáveis
-// #define EEPROM_ADDR_TEMP_UNITY 0
-// #define EEPROM_ADDR_MAX_TEMP 1
-// #define EEPROM_ADDR_MIN_TEMP 3
-// #define EEPROM_ADDR_TIMEOUT_SEND 5
-
-
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
