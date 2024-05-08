@@ -56,290 +56,241 @@ void intro() {
   lcd.clear();
 }
 
-void configTempUnity()
-{
-    static bool tempUnityChanged = false;
-    static String originalUnity = "";
-
-    if (!editingMode)
-    {
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print("Unidade: ");
-        lcd.setCursor(0, 1);
-        lcd.print(tempUnity);
-    }
-    else
-    {
-        if (!tempUnityChanged)
-        {
-            lcd.clear();
-            lcd.setCursor(0, 0);
-            lcd.print("Unidade: ");
-            tempUnityChanged = true;
-            lcd.setCursor(0, 1);
-            lcd.print(tempUnity);
-            originalUnity = tempUnity;
-        }
-
-        if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW || digitalRead(BUTTON_NEXT_PIN) == LOW)
-        {
-            if (isCelsius)
-            {
-                tempUnity = "Fahrenheit";
-                isCelsius = false;
-            }
-            else
-            {
-                tempUnity = "Celsius";
-                isCelsius = true;
-            }
-            lcd.setCursor(0, 1);
-            lcd.print(tempUnity + "   ");
-            delay(200);
-        }
-
-        if (digitalRead(BUTTON_CONFIRM_PIN) == LOW)
-        {
-            writeToEEPROM("tempUnityKey", tempUnity.c_str());
-
-            editingMode = false;
-            tempUnityChanged = false;
-            originalUnity = "";
-
-            if (isCelsius)
-                convertFromFtoC();
-            else
-                convertFromCtoF();
-        }
-        else if (digitalRead(BUTTON_CANCEL_PIN) == LOW)
-        {
-            editingMode = false;
-            tempUnityChanged = false;
-            tempUnity = originalUnity;
-            isCelsius = originalUnity == "Celsius";
-            return;
-        }
-    }
+// LCD Pages
+void firstPage() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Temperature: ");
 }
 
-void configMaxTempLimit()
-{
-    static bool tempLimitChanged = false;
-    static float originalMaxTempLimit = 0;
-    static String unity = tempUnity == "Celsius" ? " C " : " F ";
+void configTempUnity() {
+  static bool tempUnityChanged = false;
+  static String originalUnity = "";
 
-    if (!editingMode)
-    {
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print("Temperatura max:");
-        lcd.setCursor(0, 1);
-        lcd.print(maxTemp);
-        lcd.print(unity);
+  if (!editingMode) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Unidade: ");
+    lcd.setCursor(0, 1);
+    lcd.print(tempUnity);
+  } else {
+    if (!tempUnityChanged) {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Unidade: ");
+      tempUnityChanged = true;
+      lcd.setCursor(0, 1);
+      lcd.print(tempUnity);
+      originalUnity = tempUnity;
     }
-    else
-    {
-        if (!tempLimitChanged)
-        {
-            lcd.clear();
-            lcd.setCursor(0, 0);
-            lcd.print("Temperatura max:");
-            lcd.setCursor(0, 1);
-            lcd.print(maxTemp);
-            lcd.print(unity);
-            originalMaxTempLimit = maxTemp;
-            tempLimitChanged = true;
-        }
 
-        if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW)
-        {
-            if (isCelsius && maxTemp > 0)
-            {
-                maxTemp--;
-            }
-            else if (!isCelsius && maxTemp > 32)
-            {
-                maxTemp--;
-            }
-            lcd.setCursor(0, 1);
-            lcd.print(maxTemp);
-            lcd.print(unity);
-            delay(200);
-        }
-        if (digitalRead(BUTTON_NEXT_PIN) == LOW)
-        {
-            if (isCelsius && maxTemp < 80)
-            {
-                maxTemp++;
-            }
-            else if (!isCelsius && maxTemp < 176)
-            {
-                maxTemp++;
-            }
-            lcd.setCursor(0, 1);
-            lcd.print(maxTemp);
-            lcd.print(unity);
-            delay(200);
-        }
-
-        if (digitalRead(BUTTON_CONFIRM_PIN) == LOW)
-        {
-            writeToEEPROM("maxTempKey", maxTemp);
-
-            editingMode = false;
-            tempLimitChanged = false;
-            originalMaxTempLimit = 0;
-        }
-        else if (digitalRead(BUTTON_CANCEL_PIN) == LOW)
-        {
-            editingMode = false;
-            tempLimitChanged = false;
-            maxTemp = originalMaxTempLimit;
-        }
+    if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW || digitalRead(BUTTON_NEXT_PIN) == LOW) {
+      if (isCelsius) {
+        tempUnity = "Fahrenheit";
+        isCelsius = false;
+      } else {
+        tempUnity = "Celsius";
+        isCelsius = true;
+      }
+      lcd.setCursor(0, 1);
+      lcd.print(tempUnity + "   ");
+      delay(200);
     }
+
+    if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+      writeToEEPROM("tempUnityKey", tempUnity.c_str());
+
+      editingMode = false;
+      tempUnityChanged = false;
+      originalUnity = "";
+
+      if (isCelsius)
+        convertFromFtoC();
+      else
+        convertFromCtoF();
+    } else if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
+      editingMode = false;
+      tempUnityChanged = false;
+      tempUnity = originalUnity;
+      isCelsius = originalUnity == "Celsius";
+      return;
+    }
+  }
 }
 
-void configMinTempLimit()
-{
-    static bool tempLimitChanged = false;
-    static float originalMinTempLimit = 0;
-    static String unity = isCelsius ? " C " : " F ";
+void configMaxTempLimit() {
+  static bool tempLimitChanged = false;
+  static float originalMaxTempLimit = 0;
+  static String unity = tempUnity == "Celsius" ? " C " : " F ";
 
-    if (!editingMode)
-    {
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print("Temperatura min:");
-        lcd.setCursor(0, 1);
-        lcd.print(minTemp);
-        lcd.print(unity);
+  if (!editingMode) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Temperatura max:");
+    lcd.setCursor(0, 1);
+    lcd.print(maxTemp);
+    lcd.print(unity);
+  } else {
+    if (!tempLimitChanged) {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Temperatura max:");
+      lcd.setCursor(0, 1);
+      lcd.print(maxTemp);
+      lcd.print(unity);
+      originalMaxTempLimit = maxTemp;
+      tempLimitChanged = true;
     }
-    else
-    {
-        if (!tempLimitChanged)
-        {
-            lcd.clear();
-            lcd.setCursor(0, 0);
-            lcd.print("Temperatura min:");
-            lcd.setCursor(0, 1);
-            lcd.print(minTemp);
-            lcd.print(unity);
-            originalMinTempLimit = minTemp;
-            tempLimitChanged = true;
-        }
 
-        if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW)
-        {
-            if (isCelsius && minTemp > 0)
-            {
-                minTemp--;
-            }
-            else if (!isCelsius && minTemp > 32)
-            {
-                minTemp--;
-            }
-            lcd.setCursor(0, 1);
-            lcd.print(minTemp);
-            lcd.print(unity);
-            delay(200);
-        }
-        if (digitalRead(BUTTON_NEXT_PIN) == LOW)
-        {
-            if (isCelsius && minTemp < 80)
-            {
-                minTemp++;
-            }
-            else if (!isCelsius && minTemp < 176)
-            {
-                minTemp++;
-            }
-            lcd.setCursor(0, 1);
-            lcd.print(minTemp);
-            lcd.print(unity);
-            delay(200);
-        }
-
-        if (digitalRead(BUTTON_CONFIRM_PIN) == LOW)
-        {
-            writeToEEPROM("minTempKey", minTemp);
-
-            editingMode = false;
-            tempLimitChanged = false;
-            originalMinTempLimit = 0;
-        }
-        else if (digitalRead(BUTTON_CANCEL_PIN) == LOW)
-        {
-            editingMode = false;
-            tempLimitChanged = false;
-            minTemp = originalMinTempLimit;
-        }
+    if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW) {
+      if (isCelsius && maxTemp > 0) {
+        maxTemp--;
+      } else if (!isCelsius && maxTemp > 32) {
+        maxTemp--;
+      }
+      lcd.setCursor(0, 1);
+      lcd.print(maxTemp);
+      lcd.print(unity);
+      delay(200);
     }
+    if (digitalRead(BUTTON_NEXT_PIN) == LOW) {
+      if (isCelsius && maxTemp < 80) {
+        maxTemp++;
+      } else if (!isCelsius && maxTemp < 176) {
+        maxTemp++;
+      }
+      lcd.setCursor(0, 1);
+      lcd.print(maxTemp);
+      lcd.print(unity);
+      delay(200);
+    }
+
+    if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+      writeToEEPROM("maxTempKey", maxTemp);
+
+      editingMode = false;
+      tempLimitChanged = false;
+      originalMaxTempLimit = 0;
+    } else if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
+      editingMode = false;
+      tempLimitChanged = false;
+      maxTemp = originalMaxTempLimit;
+    }
+  }
 }
 
-void configSendTimeout()
-{
-    static bool timeoutSendChanged = false;
-    static int originalTimeoutSend = 0;
+void configMinTempLimit() {
+  static bool tempLimitChanged = false;
+  static float originalMinTempLimit = 0;
+  static String unity = isCelsius ? " C " : " F ";
 
-    if (!editingMode)
-    {
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print("Send Timeout: ");
-        lcd.setCursor(0, 1);
-        lcd.print(timeoutSend);
-        lcd.print(" s ");
+  if (!editingMode) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Temperatura min:");
+    lcd.setCursor(0, 1);
+    lcd.print(minTemp);
+    lcd.print(unity);
+  } else {
+    if (!tempLimitChanged) {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Temperatura min:");
+      lcd.setCursor(0, 1);
+      lcd.print(minTemp);
+      lcd.print(unity);
+      originalMinTempLimit = minTemp;
+      tempLimitChanged = true;
     }
-    else
-    {
-        if (!timeoutSendChanged)
-        {
-            lcd.clear();
-            lcd.setCursor(0, 0);
-            lcd.print("Send Timeout: ");
-            lcd.setCursor(0, 1);
-            lcd.print(timeoutSend);
-            lcd.print(" s ");
-            timeoutSendChanged = true;
-            originalTimeoutSend = timeoutSend;
-        }
 
-        if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW)
-        {
-            if (timeoutSend > 0)
-            {
-                timeoutSend = timeoutSend - 2;
-            }
-
-            lcd.setCursor(0, 1);
-            lcd.print(timeoutSend);
-            lcd.print(" s ");
-        }
-        if (digitalRead(BUTTON_NEXT_PIN) == LOW)
-        {
-            if (timeoutSend < 3600)
-            {
-                timeoutSend = timeoutSend + 2;
-            }
-            lcd.setCursor(0, 1);
-            lcd.print(timeoutSend);
-            lcd.print(" s ");
-        }
-
-        if (digitalRead(BUTTON_CONFIRM_PIN) == LOW)
-        {
-            writeToEEPROM("timeoutSendKey", timeoutSend);
-
-            editingMode = false;
-            timeoutSendChanged = false;
-            originalTimeoutSend = 0;
-        }
-        else if (digitalRead(BUTTON_CANCEL_PIN) == LOW)
-        {
-            editingMode = false;
-            timeoutSendChanged = false;
-            timeoutSend = originalTimeoutSend;
-        }
+    if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW) {
+      if (isCelsius && minTemp > 0) {
+        minTemp--;
+      } else if (!isCelsius && minTemp > 32) {
+        minTemp--;
+      }
+      lcd.setCursor(0, 1);
+      lcd.print(minTemp);
+      lcd.print(unity);
+      delay(200);
     }
+    if (digitalRead(BUTTON_NEXT_PIN) == LOW) {
+      if (isCelsius && minTemp < 80) {
+        minTemp++;
+      } else if (!isCelsius && minTemp < 176) {
+        minTemp++;
+      }
+      lcd.setCursor(0, 1);
+      lcd.print(minTemp);
+      lcd.print(unity);
+      delay(200);
+    }
+
+    if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+      writeToEEPROM("minTempKey", minTemp);
+
+      editingMode = false;
+      tempLimitChanged = false;
+      originalMinTempLimit = 0;
+    } else if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
+      editingMode = false;
+      tempLimitChanged = false;
+      minTemp = originalMinTempLimit;
+    }
+  }
+}
+
+void configSendTimeout() {
+  static bool timeoutSendChanged = false;
+  static int originalTimeoutSend = 0;
+
+  if (!editingMode) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Send Timeout: ");
+    lcd.setCursor(0, 1);
+    lcd.print(timeoutSend);
+    lcd.print(" s ");
+  } else {
+    if (!timeoutSendChanged) {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Send Timeout: ");
+      lcd.setCursor(0, 1);
+      lcd.print(timeoutSend);
+      lcd.print(" s ");
+      timeoutSendChanged = true;
+      originalTimeoutSend = timeoutSend;
+    }
+
+    if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW) {
+      if (timeoutSend > 0) {
+        timeoutSend = timeoutSend - 2;
+      }
+
+      lcd.setCursor(0, 1);
+      lcd.print(timeoutSend);
+      lcd.print(" s ");
+    }
+    if (digitalRead(BUTTON_NEXT_PIN) == LOW) {
+      if (timeoutSend < 3600) {
+        timeoutSend = timeoutSend + 2;
+      }
+      lcd.setCursor(0, 1);
+      lcd.print(timeoutSend);
+      lcd.print(" s ");
+    }
+
+    if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+      writeToEEPROM("timeoutSendKey", timeoutSend);
+
+      editingMode = false;
+      timeoutSendChanged = false;
+      originalTimeoutSend = 0;
+    } else if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
+      editingMode = false;
+      timeoutSendChanged = false;
+      timeoutSend = originalTimeoutSend;
+    }
+  }
 }
