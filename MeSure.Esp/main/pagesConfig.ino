@@ -107,9 +107,9 @@ void configTempUnity() {
       tempUnityChanged = false;
       originalUnity = "";
 
-      editingMode = false;
+      // editingMode = false;
     } else if (cancelButton.isPressed()) {
-      editingMode = false;
+      // editingMode = false;
       tempUnityChanged = false;
       tempUnity = originalUnity;
       isCelsius = originalUnity == "Celsius";
@@ -171,9 +171,9 @@ void configMaxTempLimit() {
       tempLimitChanged = false;
       originalMaxTempLimit = 0;
       
-      editingMode = false;
+      // editingMode = false;
     } else if (cancelButton.isPressed()) {
-      editingMode = false;
+      // editingMode = false;
       tempLimitChanged = false;
       maxTemp = originalMaxTempLimit;
     }
@@ -233,9 +233,9 @@ void configMinTempLimit() {
       tempLimitChanged = false;
       originalMinTempLimit = 0;
 
-      editingMode = false;
+      // editingMode = false;
     } else if (cancelButton.isPressed()) {
-      editingMode = false;
+      //editingMode = false;
       tempLimitChanged = false;
       minTemp = originalMinTempLimit;
     }
@@ -289,9 +289,9 @@ void configSendTimeout() {
       originalTimeoutSend = 0;
       timeoutSendChanged = false;
       
-      editingMode = false;
+      // editingMode = false;
     } else if (cancelButton.isPressed()) {
-      editingMode = false;
+      // editingMode = false;
       timeoutSendChanged = false;
       timeoutSend = originalTimeoutSend;
     }

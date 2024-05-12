@@ -112,7 +112,12 @@ void loop() {
   if (confirmButton.isReleased()) {
     if (currentPage == PAGE_TEMPERATURE)
       return;
-    editingMode = true;
+
+    if (editingMode)
+      editingMode = false;
+    else
+      editingMode = true;
+      
     setCurrentPage();
     delay(200);
   }
