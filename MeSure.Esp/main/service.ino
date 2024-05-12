@@ -1,10 +1,7 @@
 void checkTempStatus() {
   float currentTemp;
   float t = dht.readTemperature();
-  // Read temperature as Fahrenheit (isFahrenheit = true)
   float f = dht.readTemperature(true);
-
-  // Check if any reads failed and exit early (to try again).
 
   if (isnan(t) || isnan(f)) {
     if (currentPage == PAGE_TEMPERATURE) {
@@ -30,6 +27,9 @@ void checkTempStatus() {
       currentTemp = f;
     }
   }
+
+  Serial.println(maxTemp);
+  Serial.println(minTemp);
 
   float maxTempPercent = (currentTemp / maxTemp) * 100;
 
@@ -61,10 +61,24 @@ void checkTempStatus() {
 }
 
 void convertFromFtoC() {
-  maxTemp = (maxTemp - 32) * (5 / 9);
-  minTemp = (minTemp - 32) * (5 / 9);
+  maxTemp = (maxTemp - 32) / 1.8;
+  minTemp = (minTemp - 32) / 1.8;
 }
 void convertFromCtoF() {
   maxTemp = (9.0 / 5.0) * maxTemp + 32;
   minTemp = (9.0 / 5.0) * minTemp + 32;
+}
+
+void convertFromBitsToTemp() {
+  // Entrada máxima do sistema = 10V
+  // A cada 1V representa, aproximadamente, 10ºC
+  // Convertendo para o esp
+  // Tensão de entrada máxima 3.3V
+  // A cada 0.33V representa, aproximadamente, 10º
+
+  float value = analogRead(ANALOGICAL_TEMP_PIN);
+
+  float tensor = map(value, 0, 4095, 0, 10.0);
+
+  float temp = tensor*10;
 }

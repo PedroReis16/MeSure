@@ -18,6 +18,9 @@
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
+//Analog read
+#define ANALOGICAL_TEMP_PIN 34
+
 //LEDs
 #define GREEN_LED 19
 #define YELLOW_LED 18
@@ -52,8 +55,8 @@ int currentSelection = 1;
 
 //Variáveis configuraveis
 String tempUnity;
-float maxTemp;
-float minTemp;
+int maxTemp;
+int minTemp;
 int timeoutSend;
 
 int inicio = 0;
@@ -79,14 +82,10 @@ void setup() {
   pinMode(RED_LED, OUTPUT);
 
   //Buttons
-  pinMode(BUTTON_CANCEL_PIN, INPUT_PULLUP);
   pinMode(BUTTON_PREVIOUS_PIN, INPUT_PULLUP);
   pinMode(BUTTON_NEXT_PIN, INPUT_PULLUP);
-  pinMode(BUTTON_CONFIRM_PIN, INPUT_PULLUP);
 
   cancelButton.setDebounceTime(DEBOUCE_TIME);
-  prevButton.setDebounceTime(DEBOUCE_TIME);
-  nextButton.setDebounceTime(DEBOUCE_TIME);
   confirmButton.setDebounceTime(DEBOUCE_TIME);
 
   preferences.begin("me-sure", false);
@@ -105,8 +104,6 @@ void loop() {
   checkTempStatus();
 
   cancelButton.loop();
-  prevButton.loop();
-  nextButton.loop();
   confirmButton.loop();
 
   if (confirmButton.isReleased()) {
@@ -117,7 +114,7 @@ void loop() {
       editingMode = false;
     else
       editingMode = true;
-      
+
     setCurrentPage();
     delay(200);
   }

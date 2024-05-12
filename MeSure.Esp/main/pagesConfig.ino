@@ -106,10 +106,7 @@ void configTempUnity() {
 
       tempUnityChanged = false;
       originalUnity = "";
-
-      // editingMode = false;
     } else if (cancelButton.isPressed()) {
-      // editingMode = false;
       tempUnityChanged = false;
       tempUnity = originalUnity;
       isCelsius = originalUnity == "Celsius";
@@ -121,7 +118,7 @@ void configTempUnity() {
 void configMaxTempLimit() {
   static bool tempLimitChanged = false;
   static float originalMaxTempLimit = 0;
-  static String unity = tempUnity == "Celsius" ? " C " : " F ";
+  static String unity = isCelsius ? " C " : " F ";
 
   if (!editingMode) {
     lcd.clear();
@@ -170,10 +167,7 @@ void configMaxTempLimit() {
 
       tempLimitChanged = false;
       originalMaxTempLimit = 0;
-      
-      // editingMode = false;
     } else if (cancelButton.isPressed()) {
-      // editingMode = false;
       tempLimitChanged = false;
       maxTemp = originalMaxTempLimit;
     }
@@ -233,9 +227,9 @@ void configMinTempLimit() {
       tempLimitChanged = false;
       originalMinTempLimit = 0;
 
-      // editingMode = false;
+      Serial.println("Salvando temp min");
+
     } else if (cancelButton.isPressed()) {
-      //editingMode = false;
       tempLimitChanged = false;
       minTemp = originalMinTempLimit;
     }
@@ -289,9 +283,7 @@ void configSendTimeout() {
       originalTimeoutSend = 0;
       timeoutSendChanged = false;
       
-      // editingMode = false;
     } else if (cancelButton.isPressed()) {
-      // editingMode = false;
       timeoutSendChanged = false;
       timeoutSend = originalTimeoutSend;
     }

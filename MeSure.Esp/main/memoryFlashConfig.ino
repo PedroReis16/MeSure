@@ -1,7 +1,7 @@
 void setVariables() {
   tempUnity = preferences.getString("tempUnityKey", "Celsius");
-  maxTemp = preferences.getFloat("maxTempKey", 80.00);
-  minTemp = preferences.getFloat("minTempKey", 0.00);
+  maxTemp = preferences.getInt("maxTempKey", 80);
+  minTemp = preferences.getInt("minTempKey", 0);
   timeoutSend = preferences.getInt("timeoutSendKey", 0);
 }
 
