@@ -97,18 +97,18 @@ void configTempUnity() {
       delay(200);
     }
 
-    if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+    if (confirmButton.isPressed()) {
       writeToEEPROM("tempUnityKey", tempUnity.c_str());
-
-      editingMode = false;
-      tempUnityChanged = false;
-      originalUnity = "";
-
       if (isCelsius)
         convertFromFtoC();
       else
         convertFromCtoF();
-    } else if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
+
+      tempUnityChanged = false;
+      originalUnity = "";
+
+      editingMode = false;
+    } else if (cancelButton.isPressed()) {
       editingMode = false;
       tempUnityChanged = false;
       tempUnity = originalUnity;
@@ -165,13 +165,14 @@ void configMaxTempLimit() {
       delay(200);
     }
 
-    if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+    if (confirmButton.isPressed()) {
       writeToEEPROM("maxTempKey", maxTemp);
 
-      editingMode = false;
       tempLimitChanged = false;
       originalMaxTempLimit = 0;
-    } else if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
+      
+      editingMode = false;
+    } else if (cancelButton.isPressed()) {
       editingMode = false;
       tempLimitChanged = false;
       maxTemp = originalMaxTempLimit;
@@ -226,13 +227,14 @@ void configMinTempLimit() {
       delay(200);
     }
 
-    if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+    if (confirmButton.isPressed()) {
       writeToEEPROM("minTempKey", minTemp);
 
-      editingMode = false;
       tempLimitChanged = false;
       originalMinTempLimit = 0;
-    } else if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
+
+      editingMode = false;
+    } else if (cancelButton.isPressed()) {
       editingMode = false;
       tempLimitChanged = false;
       minTemp = originalMinTempLimit;
@@ -281,13 +283,14 @@ void configSendTimeout() {
       lcd.print(" s ");
     }
 
-    if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+    if (confirmButton.isPressed()) {
       writeToEEPROM("timeoutSendKey", timeoutSend);
 
-      editingMode = false;
-      timeoutSendChanged = false;
       originalTimeoutSend = 0;
-    } else if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
+      timeoutSendChanged = false;
+      
+      editingMode = false;
+    } else if (cancelButton.isPressed()) {
       editingMode = false;
       timeoutSendChanged = false;
       timeoutSend = originalTimeoutSend;

@@ -6,6 +6,7 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Preferences.h>
+#include <ezButton.h>
 
 #define DHTPIN 4
 
@@ -28,11 +29,17 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define BUTTON_NEXT_PIN 33
 #define BUTTON_CONFIRM_PIN 32
 
+#define DEBOUCE_TIME 50
+
 unsigned long changeTime;
 unsigned long altTime;
 unsigned long choiceTime;
 
 Preferences preferences;
+ezButton cancelButton(BUTTON_CANCEL_PIN);
+ezButton prevButton(BUTTON_PREVIOUS_PIN);
+ezButton nextButton(BUTTON_NEXT_PIN);
+ezButton confirmButton(BUTTON_CONFIRM_PIN);
 
 // Variáveis de controle
 const int pageCount = 5;
@@ -77,6 +84,11 @@ void setup() {
   pinMode(BUTTON_NEXT_PIN, INPUT_PULLUP);
   pinMode(BUTTON_CONFIRM_PIN, INPUT_PULLUP);
 
+  cancelButton.setDebounceTime(DEBOUCE_TIME);
+  prevButton.setDebounceTime(DEBOUCE_TIME);
+  nextButton.setDebounceTime(DEBOUCE_TIME);
+  confirmButton.setDebounceTime(DEBOUCE_TIME);
+
   preferences.begin("me-sure", false);
 
   //Inicialização da EEPROM
@@ -92,19 +104,26 @@ void setup() {
 void loop() {
   checkTempStatus();
 
-  if (digitalRead(BUTTON_CANCEL_PIN) == LOW) {
-    editingMode = false;
-    setCurrentPage();
-    delay(200);
-  }
+  cancelButton.loop();
+  prevButton.loop();
+  nextButton.loop();
+  confirmButton.loop();
 
-  if (digitalRead(BUTTON_CONFIRM_PIN) == LOW) {
+  if (confirmButton.isReleased()) {
     if (currentPage == PAGE_TEMPERATURE)
       return;
     editingMode = true;
     setCurrentPage();
     delay(200);
   }
+
+  if (editingMode && cancelButton.isReleased()) {
+    editingMode = false;
+    setCurrentPage();
+    delay(200);
+  }
+
+
 
   if (!editingMode) {
     if (digitalRead(BUTTON_PREVIOUS_PIN) == LOW) {
