@@ -102,7 +102,7 @@ void setup() {
 
 void loop() {
   checkTempStatus();
-
+  
   cancelButton.loop();
   confirmButton.loop();
 
