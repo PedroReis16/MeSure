@@ -1,0 +1,1561 @@
+{
+    "collection": {
+      "info": {
+        "_postman_id": "8133cf59-d2eb-49ac-83fa-2c27368ca859",
+        "name": "ProjectBasedLearning",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "updatedAt": "2024-05-12T17:56:11.000Z",
+        "uid": "32349242-8133cf59-d2eb-49ac-83fa-2c27368ca859",
+        "createdAt": null,
+        "lastUpdatedBy": null
+      },
+      "item": [
+        {
+          "name": "IOT Agent MQTT",
+          "item": [
+            {
+              "name": "Sensor Commands",
+              "item": [
+                {
+                  "name": "Turn on",
+                  "id": "1a67e86d-24d0-49f6-a6c8-2f36a80e5c43",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"on\": {\r\n      \"type\" : \"command\",\r\n      \"value\" : \"\"\r\n  }\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-1a67e86d-24d0-49f6-a6c8-2f36a80e5c43"
+                },
+                {
+                  "name": "Turn off",
+                  "id": "7c06c83c-6b40-43ce-9395-df4c66f3bf71",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"off\": {\r\n      \"type\" : \"command\",\r\n      \"value\" : \"\"\r\n  }\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-7c06c83c-6b40-43ce-9395-df4c66f3bf71"
+                },
+                {
+                  "name": "Set Sensor Unity",
+                  "id": "aacf7fca-4739-4d4a-9e36-95f3e6602dd3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"unity\": {\r\n        \"type\": \"command\",\r\n        \"value\": \"Celsius\"\r\n    }\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-aacf7fca-4739-4d4a-9e36-95f3e6602dd3"
+                },
+                {
+                  "name": "Set Maximum Temperature",
+                  "id": "a8cada8f-2838-4fb5-90a3-2018a5c80bba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"maxTemp\": {\r\n        \"type\": \"command\",\r\n        \"value\": \"100\"\r\n    }\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-a8cada8f-2838-4fb5-90a3-2018a5c80bba"
+                },
+                {
+                  "name": "Set Minimum Temperature",
+                  "id": "86f28784-9a70-46e0-b3c5-98deeb4faaba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"minTemp\": {\r\n        \"type\": \"command\",\r\n        \"value\": \"0\"\r\n    }\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-86f28784-9a70-46e0-b3c5-98deeb4faaba"
+                },
+                {
+                  "name": "Set Send Timeout",
+                  "id": "aaef8bc0-e08c-4932-b53e-9a2543907e7e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"sendTimeout\": {\r\n        \"type\": \"command\",\r\n        \"value\": \"60\"\r\n    }\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-aaef8bc0-e08c-4932-b53e-9a2543907e7e"
+                }
+              ],
+              "id": "27a49871-e9f6-4691-8db8-954223aacb33",
+              "uid": "32349242-27a49871-e9f6-4691-8db8-954223aacb33"
+            },
+            {
+              "name": "Sensor Results",
+              "item": [
+                {
+                  "name": "Result of  Smart Sensor State",
+                  "id": "d514030f-4320-4416-ada7-6c232775a133",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      },
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs/state",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs",
+                        "state"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-d514030f-4320-4416-ada7-6c232775a133"
+                },
+                {
+                  "name": "Result of  Smart Sensor Unity",
+                  "id": "018b74a6-9b0a-458c-9da1-3553c7177641",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      },
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs/unity",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs",
+                        "unity"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-018b74a6-9b0a-458c-9da1-3553c7177641"
+                },
+                {
+                  "name": "Result of Smart Sensor Max Temperature",
+                  "id": "38dfcc70-08dc-415e-822a-565e1d857dbe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      },
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs/maxTemp",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs",
+                        "maxTemp"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-38dfcc70-08dc-415e-822a-565e1d857dbe"
+                },
+                {
+                  "name": "Result of Smart Sensor Max Temperature",
+                  "id": "5df04df5-be5b-4638-876c-a65b9a297fa7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      },
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs/maxTemp",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs",
+                        "maxTemp"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-5df04df5-be5b-4638-876c-a65b9a297fa7"
+                },
+                {
+                  "name": "Result of Smart Sensor Minimum Temperature",
+                  "id": "96b083e1-535d-4646-9462-a2ea2bc21b61",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      },
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs/minTemp",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs",
+                        "minTemp"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-96b083e1-535d-4646-9462-a2ea2bc21b61"
+                },
+                {
+                  "name": "Result of Smart Sensor Send Timeout",
+                  "id": "f5518004-b694-4c3e-943a-bf8c5021a270",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "fiware-service",
+                        "value": "smart"
+                      },
+                      {
+                        "key": "fiware-servicepath",
+                        "value": "/"
+                      },
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:Sensor:001/attrs/sendTimeout",
+                      "protocol": "http",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "port": "1026",
+                      "path": [
+                        "v2",
+                        "entities",
+                        "urn:ngsi-ld:Sensor:001",
+                        "attrs",
+                        "sendTimeout"
+                      ]
+                    }
+                  },
+                  "response": [],
+                  "uid": "32349242-f5518004-b694-4c3e-943a-bf8c5021a270"
+                }
+              ],
+              "id": "4cd63642-aff9-4918-b53e-a27107e86bc3",
+              "uid": "32349242-4cd63642-aff9-4918-b53e-a27107e86bc3"
+            },
+            {
+              "name": "1.1 Health Check",
+              "id": "28dc601f-49dc-4bd5-b9d0-547fa1a2f72d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{url}}:4041/iot/about",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "4041",
+                  "path": [
+                    "iot",
+                    "about"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-28dc601f-49dc-4bd5-b9d0-547fa1a2f72d"
+            },
+            {
+              "name": "2. Provisioning a Service Group for MQTT",
+              "id": "c4a0f3c7-2fb8-49dc-a628-96361dcf2877",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n \"services\": [\n   {\n     \"apikey\":      \"TEF\",               // Chave de acesso para o serviço (API Key)\n     \"cbroker\":     \"http://{{url}}:1026\", // URL do Orion Context Broker associado ao serviço\n     \"entity_type\": \"Sensor\",             // Tipo de entidade associado ao serviço\n     \"resource\":    \"\"                   // Recurso associado ao serviço (pode estar vazio)\n   }\n ]\n}\n"
+                },
+                "url": {
+                  "raw": "http://{{url}}:4041/iot/services",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "4041",
+                  "path": [
+                    "iot",
+                    "services"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-c4a0f3c7-2fb8-49dc-a628-96361dcf2877"
+            },
+            {
+              "name": "2.1 Health Check Services",
+              "id": "78b569e6-d8b0-4f0a-a3f3-80ed5025db94",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "fiware-service",
+                    "value": "smart",
+                    "type": "text"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{url}}:4041/iot/services",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "4041",
+                  "path": [
+                    "iot",
+                    "services"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-78b569e6-d8b0-4f0a-a3f3-80ed5025db94"
+            },
+            {
+              "name": "2.1 Delete a Service Group",
+              "id": "fa10ab1e-0d76-4022-99ea-b90f62075ce7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://{{iot-agent}}/iot/services/?resource=/&apikey=TEF",
+                  "protocol": "http",
+                  "host": [
+                    "{{iot-agent}}"
+                  ],
+                  "path": [
+                    "iot",
+                    "services",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "resource",
+                      "value": "/",
+                      "description": "The path that the IoT Agent had been listening on"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "TEF"
+                    }
+                  ]
+                },
+                "description": "This example removes a provisioned service group by making a DELETE request to the `/iot/services/` endpoint.\n\nIt means that requests to `http://iot-agent:7896/iot/d?i=\u003Cdevice_id\u003E&k=4jggokgpepnvsb2uv4s40d59ov`\n(where the IoT Agent is listening for **Northbound** communications) should no longer be processed by the IoT Agent. \nThe `apiKey` and `resource` parameters must be supplied in order to identify the service group to be deleted."
+              },
+              "response": [],
+              "uid": "32349242-fa10ab1e-0d76-4022-99ea-b90f62075ce7"
+            },
+            {
+              "name": "3. Provisioning a Smart Sensor",
+              "id": "99bcea17-fb1d-4511-9f75-43fcf8553e5c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"devices\": [\n        {\n            \"device_id\": \"sensor001\", // Identificador único do dispositivo\n            \"entity_name\": \"urn:ngsi-ld:Sensor:001\", // Nome da entidade para o dispositivo (formato URN)\n            \"entity_type\": \"Sensor\", // Tipo da entidade (neste caso, \"Lamp\")\n            \"protocol\": \"PDI-IoTA-UltraLight\", // Protocolo usado para a comunicação (no exemplo, PDI-IoTA-UltraLight)\n            \"transport\": \"MQTT\", // Método de transporte (neste caso, MQTT)\n\n            // Lista de comandos que o dispositivo pode receber\n            \"commands\": [\n                { \"name\": \"on\", \"type\": \"command\" }, // Comando para ligar\n                { \"name\": \"off\",\"type\": \"command\" }, // Comando para desligar\n                { \"name\": \"unity\",\"type\": \"command\" }, // Comando para trocar a unidade de medida\n                { \"name\": \"maxTemp\", \"type\": \"command\"}, // Comando para trocar a temperatura máxima\n                { \"name\": \"minTemp\", \"type\": \"command\"}, // Comando para trocar a temperatura mínima\n                { \"name\": \"sendTimeout\",\"type\":\"command\"} // Comando para trocar o intervalo de envio\n            ],\n            \n            // Lista de atributos associados ao dispositivo\n            \"attributes\": [\n                { \"object_id\": \"s\",\"name\": \"state\", \"type\": \"Text\" }, // Atributo de estado (Texto)\n                { \"object_id\":\"t\",\"name\":\"temperature\",\"type\":\"Double\"},\n                { \"object_id\":\"u\",\"name\":\"unity\",\"type\":\"Text\"},\n                { \"object_id\": \"maxT\", \"name\": \"maximumTemp\",\"type\": \"Integer\" },\n                { \"object_id\": \"minT\", \"name\": \"minimumTemp\",\"type\": \"Integer\" },\n                { \"object_id\": \"st\", \"name\": \"sendTimeout\",\"type\": \"Integer\" }\n            ]\n        }\n    ]\n}"
+                },
+                "url": {
+                  "raw": "http://{{url}}:4041/iot/devices",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "4041",
+                  "path": [
+                    "iot",
+                    "devices"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-99bcea17-fb1d-4511-9f75-43fcf8553e5c"
+            },
+            {
+              "name": "4. Registering Smart Sensor Commands",
+              "id": "c3fe2abe-8469-4901-8f92-239255204ac4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Sensor Commands\", // Descrição do serviço de notificação\n  \"dataProvided\": {\n    \"entities\": [\n      {\n        \"id\": \"urn:ngsi-ld:Sensor:001\", \"type\": \"Sensor\" // Definição da entidade a ser monitorada\n      }\n    ],\n    \"attrs\": [\"on\", \"off\",\"unity\",\"maxTemp\",\"minTemp\",\"sendTimeout\"] // Atributos a serem monitorados (no caso, 'on' e 'off')\n  },\n  \"provider\": {\n    \"http\": { \"url\": \"http://{{url}}:4041\" }, // URL do serviço a ser notificado\n    \"legacyForwarding\": true // Indicação para encaminhar notificações de forma legada (se aplicável)\n  }\n}\n"
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/registrations",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "registrations"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-c3fe2abe-8469-4901-8f92-239255204ac4"
+            },
+            {
+              "name": "5. List all Devices Provisioned",
+              "id": "06881d34-e50f-4290-be3c-357af4eca86d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{url}}:4041/iot/devices",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "4041",
+                  "path": [
+                    "iot",
+                    "devices"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-06881d34-e50f-4290-be3c-357af4eca86d"
+            },
+            {
+              "name": "6. Delete Smart Sensor",
+              "id": "0d367e42-7ac3-4240-a417-f852c79a7819",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "fiware-service",
+                    "value": "smart",
+                    "type": "text"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{url}}:4041/iot/devices/lamp001",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "4041",
+                  "path": [
+                    "iot",
+                    "devices",
+                    "lamp001"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-0d367e42-7ac3-4240-a417-f852c79a7819"
+            }
+          ],
+          "id": "f98726c3-24b4-43df-b240-76ee5e95e969",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ],
+                "id": "cd395012-5e30-4eae-8e80-fb9981edc528"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ],
+                "id": "d12038c8-27fa-4806-9bc9-4ac79c24a0cd"
+              }
+            }
+          ],
+          "uid": "32349242-f98726c3-24b4-43df-b240-76ee5e95e969"
+        },
+        {
+          "name": "STH-Comet",
+          "item": [
+            {
+              "name": "1. Health Check",
+              "id": "a220a23e-3626-4418-9192-42892a56512c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{url}}:8666/version",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "8666",
+                  "path": [
+                    "version"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-a220a23e-3626-4418-9192-42892a56512c"
+            },
+            {
+              "name": "2. Subscribe Temperature",
+              "id": "66708119-e814-414f-bd5c-2d0034065797",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"description\": \"Notify STH-Comet of all Motion Sensor count changes\", // Descrição da notificação\r\n  \"subject\": {\r\n    \"entities\": [\r\n      {\r\n        \"id\": \"urn:ngsi-ld:Sensor:001\",\r\n        \"type\": \"Sensor\"\r\n      }\r\n    ],\r\n    \"condition\": { \"attrs\": [\"temperature\"] } // Condição para acionar a notificação (alteração de luminosidade)\r\n  },\r\n  \"notification\": {\r\n    \"http\": {\r\n      \"url\": \"http://{{url}}:8666/notify\" // URL para notificação do STH-Comet\r\n    },\r\n    \"attrs\": [\r\n      \"temperature\" // Atributo a ser notificado (luminosidade)\r\n    ],\r\n    \"attrsFormat\": \"legacy\" // Formato dos atributos a ser notificado (legado)\r\n  }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/subscriptions",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "subscriptions"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-66708119-e814-414f-bd5c-2d0034065797"
+            },
+            {
+              "name": "2. Subscribe Max Temperature",
+              "id": "4ca20209-ceef-43de-9a25-4a1a28a51f2c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"description\": \"Notify STH-Comet of all Motion Sensor count changes\", // Descrição da notificação\r\n  \"subject\": {\r\n    \"entities\": [\r\n      {\r\n        \"id\": \"urn:ngsi-ld:Sensor:001\",\r\n        \"type\": \"Sensor\"\r\n      }\r\n    ],\r\n    \"condition\": { \"attrs\": [\"maximumTemp\"] } // Condição para acionar a notificação (alteração de luminosidade)\r\n  },\r\n  \"notification\": {\r\n    \"http\": {\r\n      \"url\": \"http://{{url}}:8666/notify\" // URL para notificação do STH-Comet\r\n    },\r\n    \"attrs\": [\r\n      \"maximumTemp\" // Atributo a ser notificado (luminosidade)\r\n    ],\r\n    \"attrsFormat\": \"legacy\" // Formato dos atributos a ser notificado (legado)\r\n  }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/subscriptions",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "subscriptions"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-4ca20209-ceef-43de-9a25-4a1a28a51f2c"
+            },
+            {
+              "name": "2. Subscribe Min Temperature",
+              "id": "1b7f0b62-a64c-4851-8412-e2c71b249c9c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"description\": \"Notify STH-Comet of all Motion Sensor count changes\", // Descrição da notificação\r\n  \"subject\": {\r\n    \"entities\": [\r\n      {\r\n        \"id\": \"urn:ngsi-ld:Sensor:001\",\r\n        \"type\": \"Sensor\"\r\n      }\r\n    ],\r\n    \"condition\": { \"attrs\": [\"minimumTemp\"] } // Condição para acionar a notificação (alteração de luminosidade)\r\n  },\r\n  \"notification\": {\r\n    \"http\": {\r\n      \"url\": \"http://{{url}}:8666/notify\" // URL para notificação do STH-Comet\r\n    },\r\n    \"attrs\": [\r\n      \"minimumTemp\" // Atributo a ser notificado (luminosidade)\r\n    ],\r\n    \"attrsFormat\": \"legacy\" // Formato dos atributos a ser notificado (legado)\r\n  }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/subscriptions",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "subscriptions"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-1b7f0b62-a64c-4851-8412-e2c71b249c9c"
+            },
+            {
+              "name": "2. Subscribe Send Timeout",
+              "id": "4485bc30-7974-4167-aea2-a5efe1c27952",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"description\": \"Notify STH-Comet of all Motion Sensor count changes\", // Descrição da notificação\r\n  \"subject\": {\r\n    \"entities\": [\r\n      {\r\n        \"id\": \"urn:ngsi-ld:Sensor:001\",\r\n        \"type\": \"Sensor\"\r\n      }\r\n    ],\r\n    \"condition\": { \"attrs\": [\"sendTimeout\"] } // Condição para acionar a notificação (alteração de luminosidade)\r\n  },\r\n  \"notification\": {\r\n    \"http\": {\r\n      \"url\": \"http://{{url}}:8666/notify\" // URL para notificação do STH-Comet\r\n    },\r\n    \"attrs\": [\r\n      \"sendTimeout\" // Atributo a ser notificado (luminosidade)\r\n    ],\r\n    \"attrsFormat\": \"legacy\" // Formato dos atributos a ser notificado (legado)\r\n  }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/subscriptions",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "subscriptions"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-4485bc30-7974-4167-aea2-a5efe1c27952"
+            },
+            {
+              "name": "2. Subscribe Temperature Unity",
+              "id": "eceedaf0-9409-4bbe-a2b4-16db354cbef2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"description\": \"Notify STH-Comet of all Motion Sensor count changes\", // Descrição da notificação\r\n  \"subject\": {\r\n    \"entities\": [\r\n      {\r\n        \"id\": \"urn:ngsi-ld:Sensor:001\",\r\n        \"type\": \"Sensor\"\r\n      }\r\n    ],\r\n    \"condition\": { \"attrs\": [\"unity\"] } // Condição para acionar a notificação (alteração de luminosidade)\r\n  },\r\n  \"notification\": {\r\n    \"http\": {\r\n      \"url\": \"http://{{url}}:8666/notify\" // URL para notificação do STH-Comet\r\n    },\r\n    \"attrs\": [\r\n      \"unity\" // Atributo a ser notificado (luminosidade)\r\n    ],\r\n    \"attrsFormat\": \"legacy\" // Formato dos atributos a ser notificado (legado)\r\n  }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/subscriptions",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "subscriptions"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-eceedaf0-9409-4bbe-a2b4-16db354cbef2"
+            },
+            {
+              "name": "3. Request Luminosity",
+              "id": "9b90418b-49cb-4af3-9c11-fc2d31f27f29",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "fiware-service",
+                    "value": "smart",
+                    "type": "text"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{url}}:8666/STH/v1/contextEntities/type/Lamp/id/urn:ngsi-ld:Lamp:001/attributes/luminosity?lastN=30",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "8666",
+                  "path": [
+                    "STH",
+                    "v1",
+                    "contextEntities",
+                    "type",
+                    "Lamp",
+                    "id",
+                    "urn:ngsi-ld:Lamp:001",
+                    "attributes",
+                    "luminosity"
+                  ],
+                  "query": [
+                    {
+                      "key": "hLimit",
+                      "value": "100",
+                      "description": "Este parâmetro limita o número máximo de resultados retornados em uma única consulta de histórico. No exemplo, está configurado para 100, o que significa que, no máximo, 100 pontos de dados serão retornados em uma única solicitação.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "hOffset",
+                      "value": "1",
+                      "description": "Define o deslocamento da consulta. É usado para recuperar resultados além do limite. No exemplo, está configurado como 1, o que significa que a consulta começará a partir do segundo resultado (ignorando o primeiro resultado).",
+                      "disabled": true
+                    },
+                    {
+                      "key": "lastN",
+                      "value": "30",
+                      "description": "Especifica o número de resultados mais recentes a serem recuperados. Neste caso, está configurado como 20, o que resultará na recuperação dos 20 dados mais recentes."
+                    },
+                    {
+                      "key": "aggrMethod",
+                      "value": "occur",
+                      "description": "Define o método de agregação utilizado nos resultados. No exemplo, está configurado como 'occur', sugerindo que a agregação é feita com base na ocorrência dos eventos.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "aggrPeriod",
+                      "value": "hour",
+                      "description": "Define o período de agregação. Neste caso, está configurado para 'hour' (hora), o que sugere que os dados estão sendo agregados em intervalos de hora.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2023-08-02T18:28:21.237",
+                      "description": "Formato UTC",
+                      "disabled": true
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2023-08-03T10:28:21.237",
+                      "description": "Formato UTC",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-9b90418b-49cb-4af3-9c11-fc2d31f27f29"
+            }
+          ],
+          "id": "e6a290c1-1bf0-4636-a85e-a09a9bf9a44e",
+          "uid": "32349242-e6a290c1-1bf0-4636-a85e-a09a9bf9a44e"
+        },
+        {
+          "name": "Orion Context Broker",
+          "item": [
+            {
+              "name": "1.Version",
+              "id": "3a575cbf-dd9d-4fd7-9666-691c76b6dffe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{url}}:1026/version",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "version"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-3a575cbf-dd9d-4fd7-9666-691c76b6dffe"
+            },
+            {
+              "name": "2.Create",
+              "id": "c9d69ee8-efad-419d-8c2f-9b133c7f2ce3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": \"urn:ngsi-ld:entity:001\",\r\n    \"type\": \"iot\",\r\n    \"temperature\": {\r\n        \"type\": \"float\",\r\n        \"value\": 0.0\r\n    },\r\n    \"unity\": {\r\n        \"type\": \"Text\",\r\n        \"value\": \"Celsius\"\r\n    },\r\n    \"maximumTemp\": {\r\n        \"type\": \"Integer\",\r\n        \"value\": 100\r\n    },\r\n    \"minimumTemp\": {\r\n        \"type\": \"Integer\",\r\n        \"value\": 0\r\n    },\r\n    \"sendTimeout\": {\r\n        \"type\": \"Integer\",\r\n        \"value\": 60\r\n    }\r\n}"
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/entities",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "entities"
+                  ]
+                },
+                "description": "cria entidade"
+              },
+              "response": [],
+              "uid": "32349242-c9d69ee8-efad-419d-8c2f-9b133c7f2ce3"
+            },
+            {
+              "name": "3.Get ",
+              "id": "5d4e7b09-c1e8-4664-814e-dcffda3e1349",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "type": "text",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "type": "text",
+                    "value": "/"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/entities",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "entities"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-5d4e7b09-c1e8-4664-814e-dcffda3e1349"
+            },
+            {
+              "name": "4.Update",
+              "id": "09da5610-ad43-400a-b079-ac16b2958b08",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "fiware-service",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"temperature\": {\r\n        \"type\": \"float\",\r\n        \"value\": 0.0\r\n    },\r\n    \"unity\": {\r\n        \"type\": \"Text\",\r\n        \"value\": \"Celsius\"\r\n    },\r\n    \"maximumTemp\": {\r\n        \"type\": \"Integer\",\r\n        \"value\": 100\r\n    },\r\n    \"minimumTemp\": {\r\n        \"type\": \"Integer\",\r\n        \"value\": 0\r\n    },\r\n    \"sendTimeout\": {\r\n        \"type\": \"Integer\",\r\n        \"value\": 60\r\n    }\r\n}"
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:entity:001/attrs",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "entities",
+                    "urn:ngsi-ld:entity:001",
+                    "attrs"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-09da5610-ad43-400a-b079-ac16b2958b08"
+            },
+            {
+              "name": "5.Selective_update_temperature",
+              "id": "df30ab92-5576-4947-a357-1744502f3fa7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "fiware-service",
+                    "value": "smart",
+                    "type": "text"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "95"
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:entity:001/attrs/temperature/value",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "entities",
+                    "urn:ngsi-ld:entity:001",
+                    "attrs",
+                    "temperature",
+                    "value"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-df30ab92-5576-4947-a357-1744502f3fa7"
+            },
+            {
+              "name": "6.Selective_update_humidity",
+              "id": "294adde6-070e-4d0a-90a3-b07e95f54cc1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "fiware-service",
+                    "type": "text",
+                    "value": "smart"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "type": "text",
+                    "value": "/"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "10"
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:entity:001/attrs/humidity/value",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "entities",
+                    "urn:ngsi-ld:entity:001",
+                    "attrs",
+                    "humidity",
+                    "value"
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-294adde6-070e-4d0a-90a3-b07e95f54cc1"
+            },
+            {
+              "name": "7.Delete",
+              "id": "27185d3c-5793-4d98-b156-ce5c6014bed5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "fiware-service",
+                    "value": "smart",
+                    "type": "text"
+                  },
+                  {
+                    "key": "fiware-servicepath",
+                    "value": "/",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "http://{{url}}:1026/v2/entities/urn:ngsi-ld:entity:001",
+                  "protocol": "http",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "port": "1026",
+                  "path": [
+                    "v2",
+                    "entities",
+                    "urn:ngsi-ld:entity:001"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "Thing",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": [],
+              "uid": "32349242-27185d3c-5793-4d98-b156-ce5c6014bed5"
+            }
+          ],
+          "id": "042f9199-1e87-4f88-acb2-925783c5827c",
+          "uid": "32349242-042f9199-1e87-4f88-acb2-925783c5827c"
+        }
+      ]
+    }
+  }
