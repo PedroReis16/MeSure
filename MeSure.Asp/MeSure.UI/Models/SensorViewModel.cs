@@ -6,6 +6,6 @@
         public string FiwareName { get; set;}
         public string SensorName { get; set;}
         public long Temperature { get; set;}
-        public int Velocity { get; set;}
+        public string SedeName { get; set;}
     }
 }

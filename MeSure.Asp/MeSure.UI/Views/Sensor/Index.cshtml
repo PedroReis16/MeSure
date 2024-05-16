@@ -1,0 +1,41 @@
+﻿@model List<SensorViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Listagem de Sensores</h2>
+
+<a href="/sensor/create" class="btn btn-info">Novo Registro</a>
+<br />
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>Ações</th>
+        <th>Id</th>
+        <th>Descrição</th>
+        <th>Temperature</th>
+        <th>Alocação</th>
+    </tr>
+    @foreach (var sensor in Model)
+    {
+        <tr>
+            <td>
+                <a href="/aluno/edit?id=@sensor.Id" class="btn btn-info">Editar</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="javascript:confirma(@sensor.Id)" class="btn btn-danger">Apagar</a>
+            </td>
+            <td>@sensor.Id</td>
+            <td>@sensor.SensorName</td>
+            <td>@sensor.Temperature</td>
+            <td>@sensor.SedeName</td>
+        </tr>
+    }
+</table>
+
+<script>
+    function confirma(id) {
+        if (confirm('Deseja mesmo apagar?'))
+        {
+            location.href = '/aluno/delete?id=' + id;
+        }
+    }
+</script>
