@@ -19,7 +19,7 @@
     {
         <tr>
             <td>
-                <a href="/aluno/edit?id=@sensor.Id" class="btn btn-info">Editar</a>
+                <a href="/sensor/edit?id=@sensor.Id" class="btn btn-info">Editar</a>
                 &nbsp;&nbsp;&nbsp;
                 <a href="javascript:confirma(@sensor.Id)" class="btn btn-danger">Apagar</a>
             </td>
@@ -35,7 +35,7 @@
     function confirma(id) {
         if (confirm('Deseja mesmo apagar?'))
         {
-            location.href = '/aluno/delete?id=' + id;
+            location.href = '/sensor/delete?id=' + id;
         }
     }
 </script>
