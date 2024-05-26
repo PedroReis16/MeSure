@@ -133,6 +133,7 @@ void reconectWiFi() {
 
 void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   String msg;
+  int property = 0;
   for (int i = 0; i < length; i++) {
     char c = (char)payload[i];
     msg += c;
@@ -151,7 +152,8 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   } else if (msg.equals(onTopic)) {
     digitalWrite(D4, HIGH);
     EstadoSaida = '1';
-  } else if (msg.indexOf("Fahreinheint") != -1) {
+  } 
+  else if (msg.indexOf("Fahreinheint") != -1) {
     EstadoSaida = '2';
 
     int pipeIndex = msg.indexOf("|");
@@ -161,7 +163,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
 
     writeToEEPROM("tempUnityKey", tempUnity.c_str());
     convertFromCtoF();
-
+    property = 1;
   } else if (msg.indexOf("Celsius") != -1) {
     EstadoSaida = '3';
 
@@ -172,7 +174,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
 
     writeToEEPROM("tempUnityKey", tempUnity.c_str());
     convertFromFtoC();
-
+    property = 1;
   } else if (msg.indexOf("maxTemp") != -1) {
     EstadoSaida = '4';
 
@@ -180,19 +182,20 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
 
     String value = msg.substring(pipeIndex + 1);
 
-    // int convertedValue = int.parse(value);
-    Serial.println(value);
-
+    maxTemp = value.toInt();
+    writeToEEPROM("maxTempKey", maxTemp);
+    property = 2;
   } else if (msg.indexOf("minTemp") != -1) {
     EstadoSaida = '5';
-
 
     int pipeIndex = msg.indexOf("|");
 
     String value = msg.substring(pipeIndex + 1);
-    // int convertedValue = int.parse(value);
-    Serial.println(value);
+    minTemp = value.toInt();
+    writeToEEPROM("minTempKey", minTemp);
+    property = 3;
   }
+  updateLCD(property);
 }
 
 void VerificaConexoesWiFIEMQTT() {

@@ -66,6 +66,40 @@ void convertFromCtoF() {
   minTemp = (9.0 / 5.0) * minTemp + 32;
 }
 
+void updateLCD(int propertyChanged) {
+  switch (currentPage) {
+    case PAGE_TEMP_UNITY:
+      if (propertyChanged == 1) {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Unidade: ");
+        lcd.setCursor(0, 1);
+        lcd.print(tempUnity);
+      }
+      break;
+    case PAGE_MAX_TEMP_LIMIT:
+      if (propertyChanged == 2) {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Temperatura max:");
+        lcd.setCursor(0, 1);
+        lcd.print(maxTemp);
+        lcd.print(isCelsius ? " C":" F");
+      }
+      break;
+    case PAGE_MIN_TEMP_LIMIT:
+      if (propertyChanged == 3) {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Temperatura min:");
+        lcd.setCursor(0, 1);
+        lcd.print(minTemp);
+        lcd.print(isCelsius ? " C":" F");
+      }
+      break;
+  }
+}
+
 void convertFromBitsToTemp() {
   // Entrada máxima do sistema = 10V
   // A cada 1V representa, aproximadamente, 10ºC
@@ -77,5 +111,5 @@ void convertFromBitsToTemp() {
 
   float tensor = map(value, 0, 4095, 0, 10.0);
 
-  float temp = tensor*10;
+  float temp = tensor * 10;
 }
