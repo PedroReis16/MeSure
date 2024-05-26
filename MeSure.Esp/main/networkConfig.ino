@@ -71,6 +71,25 @@ void initConnection(char* defaultSSID, char* password, char* broker, char* topic
   initMQTT();
   delay(5000);
   MQTT.publish(TOPICO_PUBLISH_1, "s|on");
+
+  xTaskCreate(TaskMQTT, "TaskMQTT", 4096, NULL, 1, NULL);
+}
+
+
+void TaskMQTT(void *pvParameters) {
+  while (true) {
+    VerificaConexoesWiFIEMQTT();
+    EnviaEstadoOutputMQTT();
+    MQTT.loop();
+    vTaskDelay(pdMS_TO_TICKS(1000));  // Verifica a cada 1 segundo
+  }
+}
+
+void TaskDHT(void *pvParameters) {
+  while (true) {
+    handleDHT();
+    vTaskDelay(pdMS_TO_TICKS(2000)); // Verifica a cada 2 segundos
+  }
 }
 
 void loopMethods() {
