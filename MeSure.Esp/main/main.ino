@@ -141,7 +141,7 @@ void loop() {
   } else {
     setCurrentPage();
   }
-  loopMethods();
+  // loopMethods();
 }
 
 void setCurrentPage() {
