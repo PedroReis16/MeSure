@@ -148,26 +148,50 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   if (msg.equals(offTopic)) {
     digitalWrite(D4, LOW);
     EstadoSaida = '0';
-  }
-  else if (msg.equals(onTopic)) {
+  } else if (msg.equals(onTopic)) {
     digitalWrite(D4, HIGH);
     EstadoSaida = '1';
-  }
-  else if (msg.indexOf("Fahreinheint") != -1){
+  } else if (msg.indexOf("Fahreinheint") != -1) {
     EstadoSaida = '2';
-    Serial.println("Trocando a unidade para Fahreinheint");
-  }
-  else if(msg.indexOf("Celsius")!=-1){
-    EstadoSaida='3';
-    Serial.println("Trocando a unidade para Celsius");
-  }
-  else if(msg.indexOf("maxTemp")!=-1){
-    EstadoSaida='4';
-    Serial.println("Trocando a temperatura máxima");
-  }
-  else if(msg.indexOf("minTemp")!=-1){
-    EstadoSaida='5';
-    Serial.println("Trocando a temperatura mínima");
+
+    int pipeIndex = msg.indexOf("|");
+
+    tempUnity = msg.substring(pipeIndex + 1);
+    isCelsius = false;
+
+    writeToEEPROM("tempUnityKey", tempUnity.c_str());
+    convertFromCtoF();
+
+  } else if (msg.indexOf("Celsius") != -1) {
+    EstadoSaida = '3';
+
+    int pipeIndex = msg.indexOf("|");
+
+    tempUnity = msg.substring(pipeIndex + 1);
+    isCelsius = true;
+
+    writeToEEPROM("tempUnityKey", tempUnity.c_str());
+    convertFromFtoC();
+
+  } else if (msg.indexOf("maxTemp") != -1) {
+    EstadoSaida = '4';
+
+    int pipeIndex = msg.indexOf("|");
+
+    String value = msg.substring(pipeIndex + 1);
+
+    // int convertedValue = int.parse(value);
+    Serial.println(value);
+
+  } else if (msg.indexOf("minTemp") != -1) {
+    EstadoSaida = '5';
+
+
+    int pipeIndex = msg.indexOf("|");
+
+    String value = msg.substring(pipeIndex + 1);
+    // int convertedValue = int.parse(value);
+    Serial.println(value);
   }
 }
 
