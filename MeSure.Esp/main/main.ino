@@ -98,11 +98,12 @@ void setup() {
   intro();
 
   setCurrentPage();
+  initConnection("Telenew Jose", "Jepema141609", "10.0.0.145", "/TEF/sensor001/cmd", "/TEF/sensor001/atts", "/TEF/sensor001/atts/t", "sensor001");
 }
 
 void loop() {
   checkTempStatus();
-  
+
   cancelButton.loop();
   confirmButton.loop();
 
@@ -140,6 +141,7 @@ void loop() {
   } else {
     setCurrentPage();
   }
+  loopMethods();
 }
 
 void setCurrentPage() {
