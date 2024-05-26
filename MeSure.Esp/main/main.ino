@@ -142,7 +142,7 @@ void loop() {
     setCurrentPage();
   }
   // loopMethods();
-  handleDHT();
+  // handleDHT();
 }
 
 void setCurrentPage() {

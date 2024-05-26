@@ -53,7 +53,7 @@ char EstadoSaida = '0';
 
 
 void initConnection(char* defaultSSID, char* password, char* broker, char* topicoSubscribe, char* topicoPublish1, char* topicoPublish2,
-                     char* sensorPrefix) {
+                    char* sensorPrefix) {
   SSID = const_cast<char*>(defaultSSID);
   PASSWORD = const_cast<char*>(password);
   BROKER_MQTT = const_cast<char*>(broker);
@@ -66,7 +66,6 @@ void initConnection(char* defaultSSID, char* password, char* broker, char* topic
   topicPrefix = const_cast<char*>(sensorPrefix);
 
   InitOutput();
-  initSerial();
   initWiFi();
   initMQTT();
   delay(5000);
@@ -76,7 +75,7 @@ void initConnection(char* defaultSSID, char* password, char* broker, char* topic
 }
 
 
-void TaskMQTT(void *pvParameters) {
+void TaskMQTT(void* pvParameters) {
   while (true) {
     VerificaConexoesWiFIEMQTT();
     EnviaEstadoOutputMQTT();
@@ -85,10 +84,10 @@ void TaskMQTT(void *pvParameters) {
   }
 }
 
-void TaskDHT(void *pvParameters) {
+void TaskDHT(void* pvParameters) {
   while (true) {
     handleDHT();
-    vTaskDelay(pdMS_TO_TICKS(2000)); // Verifica a cada 2 segundos
+    vTaskDelay(pdMS_TO_TICKS(2000));  // Verifica a cada 2 segundos
   }
 }
 
@@ -98,10 +97,6 @@ void loopMethods() {
   MQTT.loop();
   handleDHT();
   // handleLuminosity();
-}
-
-void initSerial() {
-  Serial.begin(115200);
 }
 
 void initWiFi() {
@@ -150,14 +145,29 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   String offTopic = String(topicPrefix) + "@off|";
 
   // Compara com o tópico recebido
-  if (msg.equals(onTopic)) {
-    digitalWrite(D4, HIGH);
-    EstadoSaida = '1';
-  }
-
   if (msg.equals(offTopic)) {
     digitalWrite(D4, LOW);
     EstadoSaida = '0';
+  }
+  else if (msg.equals(onTopic)) {
+    digitalWrite(D4, HIGH);
+    EstadoSaida = '1';
+  }
+  else if (msg.indexOf("Fahreinheint") != -1){
+    EstadoSaida = '2';
+    Serial.println("Trocando a unidade para Fahreinheint");
+  }
+  else if(msg.indexOf("Celsius")!=-1){
+    EstadoSaida='3';
+    Serial.println("Trocando a unidade para Celsius");
+  }
+  else if(msg.indexOf("maxTemp")!=-1){
+    EstadoSaida='4';
+    Serial.println("Trocando a temperatura máxima");
+  }
+  else if(msg.indexOf("minTemp")!=-1){
+    EstadoSaida='5';
+    Serial.println("Trocando a temperatura mínima");
   }
 }
 

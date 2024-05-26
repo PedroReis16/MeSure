@@ -28,9 +28,6 @@ void checkTempStatus() {
     }
   }
 
-  Serial.println(maxTemp);
-  Serial.println(minTemp);
-
   float maxTempPercent = (currentTemp / maxTemp) * 100;
 
   if (currentTemp > minTemp + 3.0 && currentTemp <= minTemp + 7.0) {
