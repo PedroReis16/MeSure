@@ -1,13 +1,3 @@
-//Autor: Fábio Henrique Cabrini
-//Resumo: Esse programa possibilita ligar e desligar o led onboard, além de mandar o status para o Broker MQTT possibilitando o Helix saber
-//se o led está ligado ou desligado.
-//Revisões:
-//Rev1: 26-08-2023 Código portado para o ESP32 e para realizar a leitura de luminosidade e publicar o valor em um tópico aprorpiado do broker
-//Autor Rev1: Lucas Demetrius Augusto
-//Rev2: 28-08-2023 Ajustes para o funcionamento no FIWARE Descomplicado
-//Autor Rev2: Fábio Henrique Cabrini
-//Rev3: 1-11-2023 Refinamento do código e ajustes para o funcionamento no FIWARE Descomplicado
-//Autor Rev3: Fábio Henrique Cabrini
 #include <WiFi.h>
 #include <PubSubClient.h>
 
@@ -251,17 +241,20 @@ void reconnectMQTT() {
   }
 }
 
-void handleDHT() {
+void handleDHT(float value) {
+  String message = String (value);
+  MQTT.publish(TOPICO_PUBLISH_2, message.c_str());
+  
   // float humidity = dht.readHumidity();
-  double temperature = (double)(dht.readTemperature());
+  //double temperature = (double)(dht.readTemperature());
 
   // Verifica se a leitura falhou
-  if (isnan(temperature)) {
-    Serial.println("Falha ao ler do sensor DHT!");
-    return;
-  }
+  //if (isnan(temperature)) {
+ //   Serial.println("Falha ao ler do sensor DHT!");
+ //   return;
+  //}
 
-  String mensagem = String(temperature);
-  Serial.println(mensagem.c_str());
-  MQTT.publish(TOPICO_PUBLISH_2, mensagem.c_str());
+  //String mensagem = String(temperature);
+  //Serial.println(mensagem.c_str());
+  //MQTT.publish(TOPICO_PUBLISH_2, mensagem.c_str());
 }

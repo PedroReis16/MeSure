@@ -1,33 +1,52 @@
 void checkTempStatus() {
   float currentTemp;
-  float t = dht.readTemperature();
-  float f = dht.readTemperature(true);
+  //float t = dht.readTemperature();
+  //float f = dht.readTemperature(true);
 
-  if (isnan(t) || isnan(f)) {
-    if (currentPage == PAGE_TEMPERATURE) {
-      lcd.clear();
-      lcd.setCursor(6, 0);
-      lcd.print("ERROR");
-      return;
-    } else {
-      digitalWrite(GREEN_LED, HIGH);
-      digitalWrite(YELLOW_LED, HIGH);
-      digitalWrite(RED_LED, HIGH);
-    }
-  }
+  //if (isnan(t) || isnan(f)) {
+    //if (currentPage == PAGE_TEMPERATURE) {
+    //  lcd.clear();
+    //  lcd.setCursor(6, 0);
+    //  lcd.print("ERROR");
+    //  return;
+    //} else {
+      //digitalWrite(GREEN_LED, HIGH);
+     // digitalWrite(YELLOW_LED, HIGH);
+     // digitalWrite(RED_LED, HIGH);
+    //}
+  //}
   if (currentPage == PAGE_TEMPERATURE) {
     lcd.setCursor(0, 1);
+     currentTemp = readResistor();
     if (isCelsius) {
-      lcd.print(t);
+      lcd.print(currentTemp);
       lcd.print(" C ");
-      currentTemp = t;
+      //currentTemp = t;
     } else {
-      lcd.print(f);
+      lcd.print(currentTemp);
       lcd.print(" F ");
-      currentTemp = f;
+      //currentTemp = f;
     }
+   
   }
 
+  unsigned long currentMillis = millis();
+  
+  // Verifica se 15 segundos se passaram
+  if (currentMillis - previousMillis >= 15000) {
+    previousMillis = currentMillis;
+    
+    readings[indice] = readResistor();
+    indice++;
+    
+    // Verifica se o array de leituras está cheio
+    if (indice == 4) {
+      float average = calculateAverage(readings, 4);
+      handleDHT(average);
+      
+      indice = 0;
+    }
+  }
   float maxTempPercent = (currentTemp / maxTemp) * 100;
 
   if (currentTemp > minTemp + 3.0 && currentTemp <= minTemp + 7.0) {
@@ -108,16 +127,21 @@ void updateLCD(int propertyChanged) {
   }
 }
 
-void convertFromBitsToTemp() {
-  // Entrada máxima do sistema = 10V
-  // A cada 1V representa, aproximadamente, 10ºC
-  // Convertendo para o esp
-  // Tensão de entrada máxima 3.3V
-  // A cada 0.33V representa, aproximadamente, 10º
+float readResistor() {
+  int value = analogRead(34); 
+  float result = ((float)value / 4095.0) * 3.3;
+  float temp = (20.74*result)+16.86;
 
-  float value = analogRead(ANALOGICAL_TEMP_PIN);
+  if(!isCelsius)
+    return temp;
+  else
+    return ((9.0 / 5.0) * temp) + 32;
+}
 
-  float tensor = map(value, 0, 4095, 0, 10.0);
-
-  float temp = tensor * 10;
+float calculateAverage(float values[], int length) {
+  float sum = 0;
+  for (int i = 0; i < length; i++) {
+    sum += values[i];
+  }
+  return sum / length;
 }

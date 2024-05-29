@@ -71,6 +71,10 @@ enum Page {
 
 Page currentPage = PAGE_TEMPERATURE;
 
+float readings[4];
+int indice = 0;
+unsigned long previousMillis = 0;
+
 void setup() {
   Serial.begin(115200);
 
@@ -85,6 +89,10 @@ void setup() {
   pinMode(BUTTON_PREVIOUS_PIN, INPUT_PULLUP);
   pinMode(BUTTON_NEXT_PIN, INPUT_PULLUP);
 
+
+  //Resistor
+  pinMode(34,INPUT);
+  
   cancelButton.setDebounceTime(DEBOUCE_TIME);
   confirmButton.setDebounceTime(DEBOUCE_TIME);
 
@@ -98,7 +106,7 @@ void setup() {
   intro();
 
   setCurrentPage();
-  initConnection("Telenew Jose", "Jepema141609", "13.92.235.126", "/TEF/sensor001/cmd", "/TEF/sensor001/attrs", "/TEF/sensor001/attrs/t", "sensor001");
+  initConnection("moto", "roteador123", "13.92.235.126", "/TEF/sensor010/cmd", "/TEF/sensor010/attrs", "/TEF/sensor010/attrs/t", "sensor010");
 }
 
 void loop() {
