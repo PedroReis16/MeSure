@@ -3,6 +3,11 @@ void setVariables() {
   maxTemp = preferences.getInt("maxTempKey", 80);
   minTemp = preferences.getInt("minTempKey", 0);
   timeoutSend = preferences.getInt("timeoutSendKey", 0);
+
+  if(tempUnity == "Celsius")
+    isCelsius = true;
+  else 
+    isCelsius = false;
 }
 
 void writeToEEPROM(const char* key, const char* value) {

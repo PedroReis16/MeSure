@@ -60,10 +60,18 @@ void checkTempStatus() {
 void convertFromFtoC() {
   maxTemp = (maxTemp - 32) / 1.8;
   minTemp = (minTemp - 32) / 1.8;
+  isCelsius = true;
+
+  writeToEEPROM("maxTempKey", maxTemp) ;
+  writeToEEPROM("minTempKey", minTemp) ;
 }
 void convertFromCtoF() {
   maxTemp = (9.0 / 5.0) * maxTemp + 32;
   minTemp = (9.0 / 5.0) * minTemp + 32;
+  isCelsius = false;
+
+  writeToEEPROM("maxTempKey", maxTemp) ;
+  writeToEEPROM("minTempKey", minTemp) ;
 }
 
 void updateLCD(int propertyChanged) {

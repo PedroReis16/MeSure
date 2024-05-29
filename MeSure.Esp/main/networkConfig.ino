@@ -84,18 +84,12 @@ void TaskMQTT(void* pvParameters) {
   }
 }
 
-void TaskDHT(void* pvParameters) {
-  while (true) {
-    handleDHT();
-    vTaskDelay(pdMS_TO_TICKS(2000));  // Verifica a cada 2 segundos
-  }
-}
 
 void loopMethods() {
   VerificaConexoesWiFIEMQTT();
   EnviaEstadoOutputMQTT();
   MQTT.loop();
-  handleDHT();
+  // handleDHT();
   // handleLuminosity();
 }
 
@@ -149,33 +143,36 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   if (msg.equals(offTopic)) {
     digitalWrite(D4, LOW);
     EstadoSaida = '0';
-  } else if (msg.equals(onTopic)) {
+  }
+  if (msg.equals(onTopic)) {
     digitalWrite(D4, HIGH);
     EstadoSaida = '1';
-  } 
-  else if (msg.indexOf("Fahreinheint") != -1) {
+  }
+  if (msg.indexOf("Fahrenheit") != -1) {
     EstadoSaida = '2';
 
     int pipeIndex = msg.indexOf("|");
 
     tempUnity = msg.substring(pipeIndex + 1);
-    isCelsius = false;
 
     writeToEEPROM("tempUnityKey", tempUnity.c_str());
+
     convertFromCtoF();
     property = 1;
-  } else if (msg.indexOf("Celsius") != -1) {
+  }
+  if (msg.indexOf("Celsius") != -1) {
     EstadoSaida = '3';
 
     int pipeIndex = msg.indexOf("|");
 
     tempUnity = msg.substring(pipeIndex + 1);
-    isCelsius = true;
 
     writeToEEPROM("tempUnityKey", tempUnity.c_str());
+
     convertFromFtoC();
     property = 1;
-  } else if (msg.indexOf("maxTemp") != -1) {
+  }
+  if (msg.indexOf("maxTemp") != -1) {
     EstadoSaida = '4';
 
     int pipeIndex = msg.indexOf("|");
@@ -185,7 +182,8 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
     maxTemp = value.toInt();
     writeToEEPROM("maxTempKey", maxTemp);
     property = 2;
-  } else if (msg.indexOf("minTemp") != -1) {
+  }
+  if (msg.indexOf("minTemp") != -1) {
     EstadoSaida = '5';
 
     int pipeIndex = msg.indexOf("|");
@@ -205,16 +203,24 @@ void VerificaConexoesWiFIEMQTT() {
 }
 
 void EnviaEstadoOutputMQTT() {
+   if (EstadoSaida == '0') {
+    MQTT.publish(TOPICO_PUBLISH_1, "s|off");
+    // Serial.println("- Led Desligado");
+  }
+  
   if (EstadoSaida == '1') {
     MQTT.publish(TOPICO_PUBLISH_1, "s|on");
-    Serial.println("- Led Ligado");
+    // Serial.println("- Led Ligado");
   }
 
-  if (EstadoSaida == '0') {
-    MQTT.publish(TOPICO_PUBLISH_1, "s|off");
-    Serial.println("- Led Desligado");
+  if(EstadoSaida == '2'){
+    MQTT.publish(TOPICO_PUBLISH_1, "u|Fahrenheit");
   }
-  Serial.println("- Estado do LED onboard enviado ao broker!");
+  if(EstadoSaida == '3'){
+    MQTT.publish(TOPICO_PUBLISH_1, "u|Celsius");
+  }
+  
+  // Serial.println("- Estado do LED onboard enviado ao broker!");
   delay(1000);
 }
 

@@ -98,7 +98,7 @@ void setup() {
   intro();
 
   setCurrentPage();
-  initConnection("Telenew Jose", "Jepema141609", "10.0.0.145", "/TEF/sensor001/cmd", "/TEF/sensor001/attrs", "/TEF/sensor001/attrs/t", "sensor001");
+  initConnection("Telenew Jose", "Jepema141609", "13.92.235.126", "/TEF/sensor001/cmd", "/TEF/sensor001/attrs", "/TEF/sensor001/attrs/t", "sensor001");
 }
 
 void loop() {
@@ -141,7 +141,7 @@ void loop() {
   } else {
     setCurrentPage();
   }
-  // loopMethods();
+   //loopMethods();
   // handleDHT();
 }
 
