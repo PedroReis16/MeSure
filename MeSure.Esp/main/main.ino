@@ -159,8 +159,8 @@ void setCurrentPage() {
     case PAGE_MIN_TEMP_LIMIT:
       configMinTempLimit();
       break;
-    case PAGE_SEND_TIMEOUT:
-      configSendTimeout();
-      break;
+    // case PAGE_SEND_TIMEOUT:
+    //   configSendTimeout();
+    //   break;
   }
 }
