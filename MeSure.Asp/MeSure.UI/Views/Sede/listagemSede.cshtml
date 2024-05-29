@@ -1,0 +1,73 @@
+﻿@model List<SedeViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 class="text-center">Listagem de Sedes</h2>
+</br>
+
+
+<fieldset id="areaFiltro" class="form-group">
+    <legend>Filtro</legend>
+    <div class="row">
+        <div class="col-lg-4">
+            Sigla<br />
+            <input type="text" id="sigla" class="form-control" />
+        </div>
+        <div class="col-lg-4">
+            Estado<br />
+            <input type="number" id="estado" class="form-control" />
+        </div>
+        <div class="col-lg-1">
+            <br />
+            <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar"
+                   onclick="aplicaFiltroConsultaAvancadaVariavel()" />
+        </div>
+    </div>
+</fieldset>
+
+</br>
+</br>
+
+<a href="/Sede/create" class="btn btn-success me-2">Novo Registro</a>
+</br> </br>
+
+<div id="resultadoConsulta" class="table-responsive">
+    <table class="table mx-auto">
+        <thead>
+            <tr>
+                <th scope="col">Ações</th>
+                <th scope="col">Imagem</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sede in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/Sede/Edit?id=@sede.Id" class="btn btn-primary me-2">Editar</a>
+                        <a href="javascript:apagarAcao(@sede.Id)" class="btn btn-danger">Apagar</a>
+                    </td>
+                    <td>
+                        <img id="imgPreview" src="data:image/jpeg;base64,@sede.ImagemEmBase64" class="img-responsive"
+                             width="50">
+                    </td>
+                    <td>@sede.Nome</td>
+                    <td>@sede.Estado</td>
+                    <td>@sede.Bairro</td>
+                    <td>@sede.Telefone</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function apagarAcao(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = '/Sede/Delete?id=' + id;
+    }
+</script>
