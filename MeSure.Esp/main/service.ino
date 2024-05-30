@@ -130,9 +130,9 @@ void updateLCD(int propertyChanged) {
 float readResistor() {
   int value = analogRead(34); 
   float result = ((float)value / 4095.0) * 3.3;
-  float temp = (20.74*result)+16.86;
-
-  if(!isCelsius)
+  float temp = (result * 100)/3.3;
+  
+  if(isCelsius)
     return temp;
   else
     return ((9.0 / 5.0) * temp) + 32;

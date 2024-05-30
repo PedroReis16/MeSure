@@ -151,6 +151,8 @@ void loop() {
   }
    //loopMethods();
   // handleDHT();
+
+  
 }
 
 void setCurrentPage() {
