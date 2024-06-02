@@ -1,31 +1,15 @@
 void checkTempStatus() {
   float currentTemp;
-  //float t = dht.readTemperature();
-  //float f = dht.readTemperature(true);
-
-  //if (isnan(t) || isnan(f)) {
-    //if (currentPage == PAGE_TEMPERATURE) {
-    //  lcd.clear();
-    //  lcd.setCursor(6, 0);
-    //  lcd.print("ERROR");
-    //  return;
-    //} else {
-      //digitalWrite(GREEN_LED, HIGH);
-     // digitalWrite(YELLOW_LED, HIGH);
-     // digitalWrite(RED_LED, HIGH);
-    //}
-  //}
+  
   if (currentPage == PAGE_TEMPERATURE) {
     lcd.setCursor(0, 1);
      currentTemp = readResistor();
     if (isCelsius) {
       lcd.print(currentTemp);
       lcd.print(" C ");
-      //currentTemp = t;
     } else {
       lcd.print(currentTemp);
       lcd.print(" F ");
-      //currentTemp = f;
     }
    
   }

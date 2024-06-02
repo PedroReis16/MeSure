@@ -1,21 +1,8 @@
-// REQUIRES the following Arduino libraries:
-// - DHT Sensor Library: https://github.com/adafruit/DHT-sensor-library
-// - Adafruit Unified Sensor Lib: https://github.com/adafruit/Adafruit_Sensor
-
-#include "DHT.h"
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Preferences.h>
 #include <ezButton.h>
 
-#define DHTPIN 4
-
-// Uncomment whatever type you're using!
-//#define DHTTYPE DHT11   // DHT 11
-#define DHTTYPE DHT11  // DHT 22  (AM2302), AM2321
-//#define DHTTYPE DHT21   // DHT 21 (AM2301)
-
-DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 //Analog read
@@ -148,11 +135,7 @@ void loop() {
     }
   } else {
     setCurrentPage();
-  }
-   //loopMethods();
-  // handleDHT();
-
-  
+  }  
 }
 
 void setCurrentPage() {
@@ -169,8 +152,5 @@ void setCurrentPage() {
     case PAGE_MIN_TEMP_LIMIT:
       configMinTempLimit();
       break;
-    // case PAGE_SEND_TIMEOUT:
-    //   configSendTimeout();
-    //   break;
   }
 }

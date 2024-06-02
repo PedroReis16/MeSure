@@ -1,31 +1,6 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-// Configurações - variáveis editáveis
-
-// const char* default_SSID = "sua_rede_wifi"; // Nome da rede Wi-Fi
-// const char* default_PASSWORD = "sua_senha_wifi"; // Senha da rede Wi-Fi
-// const char* default_BROKER_MQTT = "ip_host_fiware"; // IP do Broker MQTT
-// const int default_BROKER_PORT = 1883; // Porta do Broker MQTT
-// const char* default_TOPICO_SUBSCRIBE = "/TEF/lamp001/cmd"; // Tópico MQTT de escuta
-// const char* default_TOPICO_PUBLISH_1 = "/TEF/lamp001/attrs"; // Tópico MQTT de envio de informações para Broker
-// const char* default_TOPICO_PUBLISH_2 = "/TEF/lamp001/attrs/l"; // Tópico MQTT de envio de informações para Broker
-// const char* default_ID_MQTT = "fiware_001"; // ID MQTT
-// const int default_D4 = 2; // Pino do LED onboard
-// // Declaração da variável para o prefixo do tópico
-// const char* topicPrefix = "lamp001";
-
-// Variáveis para configurações editáveis
-
-// char* SSID = const_cast<char*>(default_SSID);
-// char* PASSWORD = const_cast<char*>(default_PASSWORD);
-// char* BROKER_MQTT = const_cast<char*>(default_BROKER_MQTT);
-// int BROKER_PORT = default_BROKER_PORT;
-// char* TOPICO_SUBSCRIBE = const_cast<char*>(default_TOPICO_SUBSCRIBE);
-// char* TOPICO_PUBLISH_1 = const_cast<char*>(default_TOPICO_PUBLISH_1);
-// char* TOPICO_PUBLISH_2 = const_cast<char*>(default_TOPICO_PUBLISH_2);
-// char* ID_MQTT = const_cast<char*>(default_ID_MQTT);
-// int D4 = default_D4;
 char* SSID;
 char* PASSWORD;
 char* BROKER_MQTT;
@@ -47,12 +22,9 @@ void initConnection(char* defaultSSID, char* password, char* broker, char* topic
   SSID = const_cast<char*>(defaultSSID);
   PASSWORD = const_cast<char*>(password);
   BROKER_MQTT = const_cast<char*>(broker);
-  // BROKER_PORT = brokerPort;
   TOPICO_SUBSCRIBE = const_cast<char*>(topicoSubscribe);
   TOPICO_PUBLISH_1 = const_cast<char*>(topicoPublish1);
   TOPICO_PUBLISH_2 = const_cast<char*>(topicoPublish2);
-  // ID_MQTT = const_cast<char*>(idMQQT);
-  // D4 = defaultD4;
   topicPrefix = const_cast<char*>(sensorPrefix);
 
   InitOutput();
@@ -195,12 +167,10 @@ void VerificaConexoesWiFIEMQTT() {
 void EnviaEstadoOutputMQTT() {
    if (EstadoSaida == '0') {
     MQTT.publish(TOPICO_PUBLISH_1, "s|off");
-    // Serial.println("- Led Desligado");
   }
   
   if (EstadoSaida == '1') {
     MQTT.publish(TOPICO_PUBLISH_1, "s|on");
-    // Serial.println("- Led Ligado");
   }
 
   if(EstadoSaida == '2'){
@@ -210,7 +180,6 @@ void EnviaEstadoOutputMQTT() {
     MQTT.publish(TOPICO_PUBLISH_1, "u|Celsius");
   }
   
-  // Serial.println("- Estado do LED onboard enviado ao broker!");
   delay(1000);
 }
 
@@ -244,17 +213,4 @@ void reconnectMQTT() {
 void handleDHT(float value) {
   String message = String (value);
   MQTT.publish(TOPICO_PUBLISH_2, message.c_str());
-  
-  // float humidity = dht.readHumidity();
-  //double temperature = (double)(dht.readTemperature());
-
-  // Verifica se a leitura falhou
-  //if (isnan(temperature)) {
- //   Serial.println("Falha ao ler do sensor DHT!");
- //   return;
-  //}
-
-  //String mensagem = String(temperature);
-  //Serial.println(mensagem.c_str());
-  //MQTT.publish(TOPICO_PUBLISH_2, mensagem.c_str());
 }
