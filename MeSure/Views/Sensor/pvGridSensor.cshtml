@@ -1,0 +1,55 @@
+﻿@model List<SensorViewModel>
+
+<table class="table mx-auto">
+    <thead>
+        <tr>
+            <th scope="col">Ações</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Unidade de Medida</th>
+            <th scope="col">Limite Máximo</th>
+            <th scope="col">Limite Mínifo</th>
+            <th scope="col">Estufa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sensor in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Sensor/Edit?id=@sensor.Id" class="btn btn-primary me-2">Editar</a>
+                    <a href="javascript:apagarSensor(@sensor.Id)" class="btn btn-danger">Apagar</a>
+                    <a href="/Sensor/Dash?sensorId=@sensor.Id" class="btn btn-secondary">Dashboard</a>
+                </td>
+                <td>@sensor.NomeSensor</td>
+                <td>@sensor.UnidadeMedida</td>
+                <td>@sensor.TempMax</td>
+                <td>@sensor.TempMin</td>
+                <td>@sensor.NomeEstufa</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function apagarSensor(id) {
+        Swal.fire({
+            title: "Tem certeza que quer apagar o sensor?",
+            text: "Isso não poderá ser desfeito",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim, apague",
+            cancelButtonText: "Não apague"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Sensor deletado!",
+                    icon: "success"
+                }).then(() => {
+                    location.href = '/Sensor/Delete?id=' + id;
+                });
+            }
+        });
+    }
+</script>

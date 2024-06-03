@@ -1,0 +1,71 @@
+﻿@model EstufaViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        body {
+            background-color: #F5F5DC; /* Cor de fundo clara */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<h2>Cadastro de Estufa</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Save">
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <label for="Id" class="control-label">Nome da Estufa</label>
+            @if (ViewBag.Operacao == "I")
+            {
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+
+                <div class="mb-3">
+                    <label for="DataManutencao" class="form-label">Data da Manutenção:</label>
+                    <input asp-for="DataManutencao" class="form-control" id="dtManutencao"/>
+                    <span asp-validation-for="DataManutencao" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <input asp-for="Nome" class="form-control" readonly />
+                <br /> 
+                <div class="mb-3">
+                    <label for="NomeSede" class="form-label">Nome da sede:</label>
+                    <input asp-for="NomeSede" class="form-control" id="nomeSede" readonly/>
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="DataManutencao" class="form-label">Data da Manutenção:</label>
+                    <input asp-for="DataManutencao" class="form-control" id="dtManutencao"/>
+                    <span asp-validation-for="DataManutencao" class="text-danger"></span>
+                </div>
+            }
+           
+
+
+            <div class="mb-3">
+                <label for="rua" class="form-label">Status:</label>
+                <input asp-for="StatusManutencao" class="form-control" id="rua" />
+                <span asp-validation-for="StatusManutencao" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="rua" class="form-label">Sede associada:</label>
+                <select asp-for="@Model.IdSede" asp-items="ViewBag.Sedes" class="form-control"> </select>
+            </div>
+
+            <br />
+            <input type="submit" value="Salvar dados" class="btn btn-success"/>
+            <br />
+            <span class="text-danger">@ViewBag.Erro</span>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model List<EstufaViewModel>
+
+<table class="table mx-auto">
+    <thead>
+        <tr>
+            <th scope="col">Ações</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Status da manutenção</th>
+            <th scope="col">Data da manutenção</th>
+            <th scope="col">Sede</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var estufa in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Estufa/Edit?id=@estufa.Id" class="btn btn-primary me-2">Editar</a>
+                    <a href="javascript:apagarEstufa(@estufa.Id)" class="btn btn-danger">Apagar</a>
+                    <a href="/Estufa/Dash?estufaId=@estufa.Id" class="btn btn-secondary">Dashboard</a>
+                </td>
+                <td>@estufa.Nome</td>
+                <td>@estufa.StatusManutencao</td>
+                <td>@estufa.DataManutencao</td>
+                <td>@estufa.NomeSede</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function apagarEstufa(id) {
+        Swal.fire({
+            title: "Isso apagará todos itens associados",
+            text: "Isso não poderá ser desfeito",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim, apague",
+            cancelButtonText: "Não apague"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Estufa deletada!",
+                    icon: "success"
+                }).then(() => {
+                    location.href = '/Estufa/Delete?id=' + id;
+                });
+            }
+        });
+    }
+</script>

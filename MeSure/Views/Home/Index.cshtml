@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Centralizada</title>
+    <style>
+        body {
+            background-color: #F5F5DC; /* Cor de fundo clara */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .centered-div {
+            text-align: center;
+            background: #FAFAD2;
+            padding: 20px;
+            border: 2px solid #dee2e6; /* Borda da div */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .centered-div img {
+                max-width: 50%; /* Reduzir a largura da imagem pela metade */
+                height: auto;
+                border-radius: 5px;
+                margin-bottom: 15px;
+            }
+    </style>
+</head>
+<body>
+    <!-- Conteúdo Centralizado -->
+    <div class="content-wrapper">
+        <div class="centered-div">
+            <img src="~/Logo.jpg" alt="Placeholder Image">
+            <h3>Bem-vindo à MeSure, nós medimos para você ficar seguro de seus decisões.</h3>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+﻿@model SedeViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        body {
+            background-color: #F5F5DC; /* Cor de fundo clara */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<h2 class="text-center">Cadastro de Sede</h2>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Save" enctype="multipart/form-data">
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <label for="Id" class="control-label">Nome</label>
+            @if (ViewBag.Operacao == "I")
+            {
+                <input asp-for="Nome" class="form-control" />
+            }
+            else
+            {
+                <input asp-for="Nome" class="form-control" readonly />
+            }
+            <span asp-validation-for="Nome" class="text-danger"></span>
+
+            <br />
+            <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
+            <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive"
+                 width="100">
+            <span asp-validation-for="Imagem" class="text-danger"></span>
+            
+
+            <div class="mb-3">
+                <label for="cep" class="form-label">CEP:</label>
+                <input asp-for="Cep" class="form-control" id="cep" onchange="buscaCEP()" />
+                <span asp-validation-for="Cep" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="estado" class="form-label">Estado:</label>
+                    <input asp-for="Estado" class="form-control" id="estado" />
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label for="cidade" class="form-label">Cidade:</label>
+                    <input asp-for="Cidade" class="form-control" id="cidade" />
+                    <span asp-validation-for="Cidade" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4">
+                    <label for="bairro" class="form-label">Bairro:</label>
+                    <input asp-for="Bairro" class="form-control" id="bairro" />
+                    <span asp-validation-for="Bairro" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="rua" class="form-label">Rua:</label>
+                <input asp-for="Rua" class="form-control" id="rua" />
+                <span asp-validation-for="Rua" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone:</label>
+                <input asp-for="Telefone" class="form-control" id="telefone" />
+                <span asp-validation-for="Telefone" class="text-danger"></span>
+            </div>
+
+            <br />
+            <input type="submit" value="Salvar dados" class="btn btn-success"/>
+            <br />
+            <span class="text-danger">@ViewBag.Erro</span>
+
+            <script>
+                function exibirImagem() {
+                    var oFReader = new FileReader();
+                    oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
+                    oFReader.onload = function (oFREvent) {
+                        document.getElementById("imgPreview").src = oFREvent.target.result;
+                    };
+                }
+
+                function buscaCEP() {
+                    var cep = document.getElementById("cep").value;
+                    cep = cep.replace('-', ''); // removemos o traço do CEP
+                    if (cep.length > 0) {
+                        var linkAPI = 'https://viacep.com.br/ws/' + cep + '/json/';
+                        $.ajax({
+                            url: linkAPI,
+                            beforeSend: function () {
+                                document.getElementById("estado").value = '...';
+                                document.getElementById("bairro").value = '...';
+                                document.getElementById("cidade").value = '...';
+                                document.getElementById("rua").value = '...';
+                            },
+                            success: function (dados) {
+                                if (dados.erro != undefined) // quando o CEP não existe...
+                                {
+                                    alert('CEP não localizado...');
+                                    document.getElementById("estado").value = '';
+                                    document.getElementById("bairro").value = '';
+                                    document.getElementById("cidade").value = '';
+                                    document.getElementById("rua").value = '';
+                                }
+                                else // quando o CEP existe
+                                {
+                                    document.getElementById("estado").value = dados.uf;
+                                    document.getElementById("bairro").value = dados.bairro;
+                                    document.getElementById("cidade").value = dados.localidade;
+                                    document.getElementById("rua").value = dados.logradouro;
+                                }
+                            }
+                        });
+                    }
+                }
+            </script>
+        </form>
+    </div>
+</div>

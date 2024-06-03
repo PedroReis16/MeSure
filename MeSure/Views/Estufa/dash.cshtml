@@ -1,0 +1,96 @@
+﻿@model int
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-color: #F5F5DC; /* Cor de fundo clara */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .dashboard-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .canvas-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #FAFAD2;
+            padding: 20px;
+            border: 2px solid #dee2e6; /* Borda da div */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            box-sizing: border-box;
+        }
+
+        .info-container {
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<div class="content-container">
+    <h2 class="dashboard-title">Dashboard Estufa</h2>
+
+    <div class="row">
+        <div class="col-lg-5">
+            Período de 
+            <input type="datetime-local" id="dataInicial" class="form-control" />
+        </div>
+        
+        <div class="col-lg-5">
+            Período até
+            <br />
+            <input type="datetime-local" id="dataFinal" class="form-control" />
+        </div>
+        <div class="col-lg-1">
+            <br />
+            <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar"
+                   onclick="loadChartEstufasDatas(@Model)" />
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="canvas-container">
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+        <div class="info-container">
+            <h3>Temperatura máx na Estufa: <span id="max"></span> </h3>
+        </div>
+        <div class="info-container">
+            <h3>Temperatura min na Estufa: <span id="min"></span></h3>
+        </div>
+        <div class="info-container">
+            <h3>Temperatura média da estufa: <span id="med"></span></h3>
+        </div>
+        <input type="button" id="btnFiltro" class="btn btn-info" value="Atualizar Dados" onclick="loadChartEstufas(@Model)" />
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () { loadChartEstufas(@Model); });
+</script>

@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre</title>
+    <style>
+        body {
+            background-color: #F5F5DC; /* Cor de fundo clara */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Garantir que ocupa a altura da janela */
+            padding: 20px 0; /* Espaçamento superior e inferior */
+            margin-top: -150px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Espaçamento entre as divs */
+        }
+
+        .centered-div {
+            text-align: left;
+            background: #FAFAD2;
+            padding: 20px;
+            border: 2px solid #dee2e6; /* Borda da div */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            box-sizing: border-box;
+        }
+
+            .centered-div img {
+                max-width: 50%; /* Reduzir a largura da imagem pela metade */
+                height: auto;
+                border-radius: 5px;
+                margin-bottom: 15px;
+            }
+
+            .centered-div p, .centered-div ul {
+                margin: 0 0 15px;
+                line-height: 1.6;
+            }
+
+            .centered-div ul {
+                padding-left: 20px;
+            }
+
+            .centered-div li {
+                margin-bottom: 10px;
+            }
+
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 20px; /* Margem inferior para espaço entre título e divs */
+            text-align: center;
+            font-size: 2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Conteúdo Centralizado -->
+    <div class="content-container">
+        <h2 class="text-center">Sobre</h2>
+        <div class="content-wrapper">
+            
+            <div class="centered-div">
+                <p>
+                    O principal meio de utilização do sistema é a barra de navegação superior, por ela conseguimos acessar todas as funcionalidades.
+                </p>
+                <p>
+                    Para começar usar o sistema, é necessário cadastrar uma sede, uma estufa para essa sede e por fim um sensor para essa estufa,
+                </p>
+                <p>
+                    Isso pode ser feito acessando
+                    as abas correspondentes.
+                </p>
+                <p>
+                    Na parte de cadastrar um sensor, para habilitar a comunicação com os dados do sensor físico é necessário apertar o botão "Cadastrar no Fiware" e caso obtenha uma resposta de sucesso, poderá acessar os dados do sensor na aba de dashboards.
+                </p>
+            </div>
+            <div class="centered-div">
+                <p>Alunos envolvidos no projeto:</p>
+                <ul>
+                    <li>Ana Beatriz Canassa - RA 081220007</li>
+                    <li>Estela Guerino Estigoni - RA 081220014</li>
+                    <li>Erik Foramiglio Vieira - RA 081220015</li>
+                    <li>Fabrício Santos Gonçalves - RA 081220019</li>
+                    <li>Pedro Henrique Reis - RA 081220044</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
