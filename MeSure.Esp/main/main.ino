@@ -65,8 +65,6 @@ unsigned long previousMillis = 0;
 void setup() {
   Serial.begin(115200);
 
-  dht.begin();
-
   //LED
   pinMode(GREEN_LED, OUTPUT);
   pinMode(YELLOW_LED, OUTPUT);
@@ -93,7 +91,7 @@ void setup() {
   intro();
 
   setCurrentPage();
-  initConnection("moto", "roteador123", "13.92.235.126", "/TEF/sensor010/cmd", "/TEF/sensor010/attrs", "/TEF/sensor010/attrs/t", "sensor010");
+  initConnection("moto", "roteador123", "13.92.235.126", "/TEF/sensor001/cmd", "/TEF/sensor001/attrs", "/TEF/sensor001/attrs/t", "sensor001");
 }
 
 void loop() {

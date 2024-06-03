@@ -17,20 +17,20 @@ void checkTempStatus() {
   unsigned long currentMillis = millis();
   
   // Verifica se 15 segundos se passaram
-  if (currentMillis - previousMillis >= 15000) {
-    previousMillis = currentMillis;
+ // if (currentMillis - previousMillis >= 15000) {
+   // previousMillis = currentMillis;
     
-    readings[indice] = readResistor();
-    indice++;
+   // readings[indice] = readResistor();
+  //  indice++;
     
     // Verifica se o array de leituras está cheio
-    if (indice == 4) {
-      float average = calculateAverage(readings, 4);
-      handleDHT(average);
+    //if (indice == 4) {
+   //   float average = calculateAverage(readings, 4);
       
-      indice = 0;
-    }
-  }
+   //   indice = 0;
+   // }
+  //}
+      handleDHT(currentTemp);
   float maxTempPercent = (currentTemp / maxTemp) * 100;
 
   if (currentTemp > minTemp + 3.0 && currentTemp <= minTemp + 7.0) {
