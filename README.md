@@ -10,8 +10,8 @@ Além disso, através do próprio dispositivo é possível a alteração dos par
 
 ## Diagramas do circuito
 
-### Visualização do projeto
-
+### Diagrama do sistema
+<img src="https://github.com/PedroReis16/MeSure/blob/main/DiagramaPBL.jpg" alt="CircuitoEletrico" style="width: 80%;">
 
 ### Circuito
 <img src="https://github.com/PedroReis16/MeSure/blob/main/Circuito.png" alt="CircuitoEletrico" style="width: 80%;">
