@@ -91,7 +91,7 @@ void setup() {
   intro();
 
   setCurrentPage();
-  initConnection("moto", "roteador123", "13.92.235.126", "/TEF/sensor001/cmd", "/TEF/sensor001/attrs", "/TEF/sensor001/attrs/t", "sensor001");
+  initConnection("Croco", "croco123", "13.92.235.126", "/TEF/sensor13/cmd", "/TEF/sensor13/attrs", "/TEF/sensor13/attrs/t", "sensor13");
 }
 
 void loop() {
